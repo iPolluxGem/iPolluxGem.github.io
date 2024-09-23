@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="终于给服务器费画了个句号。一晚上完成迁移，把之前一直搞不定的东西都搞定了（其实还是那个原因，如果明天要上班肯定又整不完，就是因为没有迫切的后顾之忧所以可以放心操作）。现在挂在 GitHub Pages 上，映射了之前买的域名，还套了层 Cloudflare。重新映射的速度比我预期的快多了，几乎是马上完成。框架也换成了 Hexo + 之前看椒盐豆豉老师的博客时就很喜欢的 Cactus 主题。中间想偷">
+<meta property="og:type" content="article">
+<meta property="og:title" content="工具能用就行，如果用不上要么不买要么退货">
+<meta property="og:url" content="https://www.hanbun-hoshi.top/2024/09/16/self-reflection/index.html">
+<meta property="og:site_name" content="半分星">
+<meta property="og:description" content="终于给服务器费画了个句号。一晚上完成迁移，把之前一直搞不定的东西都搞定了（其实还是那个原因，如果明天要上班肯定又整不完，就是因为没有迫切的后顾之忧所以可以放心操作）。现在挂在 GitHub Pages 上，映射了之前买的域名，还套了层 Cloudflare。重新映射的速度比我预期的快多了，几乎是马上完成。框架也换成了 Hexo + 之前看椒盐豆豉老师的博客时就很喜欢的 Cactus 主题。中间想偷">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-09-15T21:00:00.000Z">
+<meta property="article:modified_time" content="2024-09-20T13:10:49.202Z">
+<meta property="article:author" content="半分星">
+<meta property="article:tag" content="总结">
+<meta property="article:tag" content="生活">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.jpg" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.jpg">
+        
+      
+    
+    <!-- title -->
+    <title>工具能用就行，如果用不上要么不买要么退货</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<style type="text/css">
+.spoiler {
+  display: inline;
+}
+p.spoiler {
+  display: flex;
+}
+.spoiler a {
+  pointer-events: none;
+}
+.spoiler-blur, .spoiler-blur > * {
+  transition: text-shadow .5s ease;
+}
+.spoiler .spoiler-blur, .spoiler .spoiler-blur > * {
+  color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
+  text-shadow: 0 0 10px grey;
+  cursor: pointer;
+}
+.spoiler .spoiler-blur:hover, .spoiler .spoiler-blur:hover > * {
+  text-shadow: 0 0 5px grey;
+}
+.spoiler-box, .spoiler-box > * {
+  transition: color .5s ease,
+  background-color .5s ease;
+}
+.spoiler .spoiler-box, .spoiler .spoiler-box > * {
+  color: black;
+  background-color: black;
+  text-shadow: none;
+}
+    .spoiler .spoiler-box.spoiler-1ffd9, .spoiler .spoiler-box.spoiler-1ffd9 > * {
+      color: black;
+      background-color: black;
+    }</style><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="半分星" type="application/atom+xml">
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/categories/">分类</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/links/">外链</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     --><!--
+       --><li><a href="/atom.xml">RSS</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/2024/09/19/internet_yamero/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2024/09/15/night_write/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.hanbun-hoshi.top/2024/09/16/self-reflection/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.hanbun-hoshi.top/2024/09/16/self-reflection/&text=工具能用就行，如果用不上要么不买要么退货"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.hanbun-hoshi.top/2024/09/16/self-reflection/&title=工具能用就行，如果用不上要么不买要么退货"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.hanbun-hoshi.top/2024/09/16/self-reflection/&is_video=false&description=工具能用就行，如果用不上要么不买要么退货"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=工具能用就行，如果用不上要么不买要么退货&body=Check out this article: https://www.hanbun-hoshi.top/2024/09/16/self-reflection/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.hanbun-hoshi.top/2024/09/16/self-reflection/&title=工具能用就行，如果用不上要么不买要么退货"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.hanbun-hoshi.top/2024/09/16/self-reflection/&title=工具能用就行，如果用不上要么不买要么退货"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.hanbun-hoshi.top/2024/09/16/self-reflection/&title=工具能用就行，如果用不上要么不买要么退货"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.hanbun-hoshi.top/2024/09/16/self-reflection/&title=工具能用就行，如果用不上要么不买要么退货"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.hanbun-hoshi.top/2024/09/16/self-reflection/&name=工具能用就行，如果用不上要么不买要么退货&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.hanbun-hoshi.top/2024/09/16/self-reflection/&t=工具能用就行，如果用不上要么不买要么退货"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        工具能用就行，如果用不上要么不买要么退货
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">半分星</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-09-15T21:00:00.000Z" class="dt-published" itemprop="datePublished">2024-09-16</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/%E6%97%A0%E7%97%85%E5%91%BB%E5%90%9F/">无病呻吟</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/%E6%80%BB%E7%BB%93/" rel="tag">总结</a>, <a class="p-category" href="/tags/%E7%94%9F%E6%B4%BB/" rel="tag">生活</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>终于给服务器费画了个句号。一晚上完成迁移，把之前一直搞不定的东西都搞定了（其实还是那个原因，如果明天要上班肯定又整不完，就是因为没有迫切的后顾之忧所以可以放心操作）。现在挂在 GitHub Pages 上，映射了之前买的域名，还套了层 Cloudflare。重新映射的速度比我预期的快多了，几乎是马上完成。框架也换成了 Hexo + 之前看<a target="_blank" rel="noopener" href="https://blog.douchi.space/posts/#gsc.tab=0">椒盐豆豉</a>老师的博客时就很喜欢的 Cactus 主题。中间想偷懒用别人定制好的方案，但最后还是下了原作者的版本自己改，加上需要的功能。</p>
+<p>目前支持了简写的 ruby 语句「<code>&#123;写作 Clannad|读作人生&#125;</code> → <ruby>写作 Clannad<rt>读作人生</rt></ruby>」、防剧透<span class="spoiler" onclick="this.classList.toggle('spoiler')"><span class="spoiler-blur spoiler-1ffd9">「这里地方很大，但我就是不想写上去」</span></span>、还有悬浮提示<code>&#123;% hint '这里是正文' '这里是注释 :D' %&#125;</code> → <span class="hint--info hint--rounded hint--top" data-hint="这里是注释 :D" ontouchstart>这里是正文</span>以及基于 atom.xml 的 RSS 功能。<span class="hint--info hint--rounded hint--top" data-hint="9 月 20 日补充：因为模板里自带对 Utterance 的支持，而且又超级好配置，就整了" ontouchstart>评论什么的就先不整了</span>，还有统计——一直不太热衷这个，有 Cloudflare 就够了。</p>
+<p>其实又想到工具的问题。虽然很早就对笔记软件失去特别强烈的热情了，但折腾一下还是乐意的。但上周开始学 Godot，真正需要记东西后，发现人只需要一个软件就够了，更何况在公司我已经重新恢复用纸笔来记一些东西了。目前就 Obsidian + 滴答清单。其他的确实没有什么需求，因为我发现我真的不会记那个读书笔记，学生时代不会，现在仍然不会。而且我又不乐意在书上写写画画，所以很多方法完全没法用。所以还是用自己最舒适的吧。毕竟「写一篇笔记来说明如何记笔记」、「写一篇博客来说明如何搭建博客」的文章已经够多了。纸笔也行，倒不如说写字感觉更好，而且最近还迷上了铅笔写字，只要能用铅笔的，一定用铅笔。让工具回归工具本质，所有人都这样说，但「终极方案」一个接着一个。</p>
+<p>现在的就是终极方案（暂定）。</p>
+<p>说回昨晚搭博客，网上很多资料是互相复制，然后在搜索的过程中，能见识到各种各样排版风格的文章，然后内容是完全一样的。有些复制代码还要付费。可什么能比官方文档更好使呢？有些佬是有些妙招，但妙招要是出问题了，想撤回去都撤不干净。我始终秉承学点东西总没坏处的思维，就像大上周突然决定学九键的米旮旯 3 一样，昨晚也强迫自己把其实简单得要命的 Git push 相关学了，包括各种报错——昨晚是从修理上次半途而废装了一半的 npm 开始的——直到所有东西都不会莫名其妙报错，和官方文档上冒出来的东西是一样的为止。而且昨晚 Github 出奇的通畅，这是有人开窍了？</p>
+<p>好像连标题都忘了。这个标题的核心意思就是 Vultr 我吃不消了，所以不续了来到 Github Pages + Hexo。同理，也可以延伸到所有工具，比如从 GN6 退回 GN5，省一年四十块。但有些东西还是要买，比如一把大号的螺丝刀。</p>
+<p>那为啥要用 Cloudflare 呢？</p>
+<p>因为 Cloudflare 经常问我是不是人，我决定用行动证明我是。</p>
+
+  </div>
+</article>
+
+
+    <div class="blog-post-comments">
+        <div id="utterances_thread">
+            <noscript>如果你看到这条提示，请启用 JavaScript</noscript>
+        </div>
+    </div>
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+          <li><a href="/categories/">分类</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/links/">外链</a></li>
+        
+          <li><a href="/search/">搜索</a></li>
+        
+          <li><a href="/atom.xml">RSS</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.hanbun-hoshi.top/2024/09/16/self-reflection/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.hanbun-hoshi.top/2024/09/16/self-reflection/&text=工具能用就行，如果用不上要么不买要么退货"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.hanbun-hoshi.top/2024/09/16/self-reflection/&title=工具能用就行，如果用不上要么不买要么退货"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.hanbun-hoshi.top/2024/09/16/self-reflection/&is_video=false&description=工具能用就行，如果用不上要么不买要么退货"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=工具能用就行，如果用不上要么不买要么退货&body=Check out this article: https://www.hanbun-hoshi.top/2024/09/16/self-reflection/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.hanbun-hoshi.top/2024/09/16/self-reflection/&title=工具能用就行，如果用不上要么不买要么退货"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.hanbun-hoshi.top/2024/09/16/self-reflection/&title=工具能用就行，如果用不上要么不买要么退货"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.hanbun-hoshi.top/2024/09/16/self-reflection/&title=工具能用就行，如果用不上要么不买要么退货"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.hanbun-hoshi.top/2024/09/16/self-reflection/&title=工具能用就行，如果用不上要么不买要么退货"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.hanbun-hoshi.top/2024/09/16/self-reflection/&name=工具能用就行，如果用不上要么不买要么退货&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.hanbun-hoshi.top/2024/09/16/self-reflection/&t=工具能用就行，如果用不上要么不买要么退货"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Powered by Hexo &amp; Hosted on Github Pages.
+    Copyright &copy;
+    
+    
+    2024
+    半分星
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/categories/">分类</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/links/">外链</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     --><!--
+       --><li><a href="/atom.xml">RSS</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到剪贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+    <script type="text/javascript">
+      var utterances_repo = 'iPolluxGem/iPolluxGem.github.io';
+      var utterances_issue_term = 'pathname';
+      var utterances_label = 'Comment';
+      var utterances_theme = 'github-light';
+
+      (function(){
+          var script = document.createElement('script');
+
+          script.src = 'https://utteranc.es/client.js';
+          script.setAttribute('repo', utterances_repo);
+          script.setAttribute('issue-term', 'pathname');
+          script.setAttribute('label', utterances_label);
+          script.setAttribute('theme', utterances_theme);
+          script.setAttribute('crossorigin', 'anonymous');
+          script.async = true;
+          (document.getElementById('utterances_thread')).appendChild(script);
+      }());
+  </script>
+
+</body>
+</html>
