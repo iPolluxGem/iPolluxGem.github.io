@@ -7,7 +7,8 @@ draft: false
 ---
 
 转到雾凇方案后自组自用的两个配色方案，正好一早一晚。
-**方案 1：晨光始/Morning Twilight**
+
+### **方案 1：晨光始/Morning Twilight**
 
 ```yaml
   morning_twilight:
@@ -35,7 +36,7 @@ draft: false
 
 效果：![晨光始][1]
 
-**方案 2：江浸月/Moon River**
+### **方案 2：江浸月/Moon River**
 
 ```yaml
 moon_river:
