@@ -54,7 +54,7 @@ export const profileConfig: ProfileConfig = {
     {
       name: 'mail',
       icon: 'material-symbols:stacked-email-rounded',       // Visit https://icones.js.org/ for icon codes. You will need to install the corresponding icon set if it's not already included. `pnpm add @iconify-json/<icon-set-name>`
-      url: 'mailto:kevin_quan1999@hotmail.com',
+      url: 'mailto:kevin.j.quan@hotmail.com',
     },
     {
       name: 'Steam',
