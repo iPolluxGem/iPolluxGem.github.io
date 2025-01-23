@@ -24,8 +24,6 @@
 
 :::
 
-
-
 ID「半分星」的来历是 The Blue Hearts（ザ・ブルーハーツ）乐队「夕暮れ」中的一句「夕焼け空は赤い 炎のように赤い この**星の半分**を真っ赤に染めた」。如果对这个乐队感兴趣，除了可以[听他们的歌](https://music.163.com/#/artist?id=21827)，还可以去看 [THE ROLLING GIRLS](https://mzh.moegirl.org.cn/THE_ROLLING_GIRLS)，来自乐队粉丝的致敬之作。
 
 把各种东西都称作过爱好，但多数因为钱和毅力的问题搁置了（比如天文）。目前只有打游戏和看纸片人两个爱好。希望能有机会把之前的爱好都重新捡起来。
@@ -36,6 +34,8 @@ ID「半分星」的来历是 The Blue Hearts（ザ・ブルーハーツ）乐�
 
 声优喜欢悠木碧、植田佳奈和津田健次郎。
 Vtuber 看[花丸晴琉](https://space.bilibili.com/441381282)，但也是相当随缘地看；P 主喜欢[稲葉曇](https://www.nicovideo.jp/user/42833430)；歌手/唱见喜欢[ヰ世界情緒](https://space.bilibili.com/488978908/)和 [Ручной Рептилоид（也就是「手持爬行动物」或者「宠物蜥蜴娘」）](https://space.bilibili.com/3461582713522798)，当然，也不止于此；为动画创作作品的作曲/编曲家喜欢[大岛满](https://music.163.com/#/artist?id=17486)、[梶浦由记](https://mzh.moegirl.org.cn/%E6%A2%B6%E6%B5%A6%E7%94%B1%E8%AE%B0)和[伊藤真澄](https://bgm.tv/person/383)（马甲非常多，例如「七濑光」、「Oranges & Lemons（和上野洋子）」），都是为多部动画配乐，而且风格上都有相似之处。
+
+我相信讨厌的人是知道有人讨厌他们的，不仅知道，而且还会以此为乐，认为对方破防了。所以何必写出来讨厌哪种人呢？大家自会对号入座。总结起来就是：使用搜索引擎、多做事实核查。顺便，如果「事实核查」四个字让你特别激动，那恭喜你，可以提前知道我讨厌你了。
 
 过去的一年里（2024 年）个人的年度最佳游戏是[《近畿灵务局》](https://store.steampowered.com/app/2956820/__Kinki_Spiritual_Affairs_Bureau/)和[《异度之刃 3》](https://www.nintendo.com/jp/switch/az3ha/index.html)。很少玩当年新出作品，所以不管是什么评选基本都只是看看，顺便给《无人深空》投一个最佳运营/最佳长期支持之类的票（如果有的投）。
 
