@@ -3,9 +3,7 @@
 **Dif-tor heh smusma.**
 
 > **这不是一个开发者博客。**
-> 
 > **THIS IS NOT A DEVELOPER'S BLOG.**
-> 
 > **TIO NE ESTAS LA BLOGO DE PROGRAMISTO.**
 
 :::warning
@@ -18,27 +16,36 @@
 
 **本人对技术并不了解，在博客的搭建过程中间接接受了许多人的帮助，感谢这些博主的文章！**
 
-根据 [VrianCao 的这篇博客文章](https://cf.vriancao.top/posts/giscus-on-astro/)，已经加上基于 [giscus](https://github.com/giscus/giscus) 的评论功能，比 utterance 功能多了一些，但都需要用 Github 账号登录。只要照着一步一步进行，就能顺利实现。
+💬 根据 [VrianCao 的这篇博客文章](https://cf.vriancao.top/posts/giscus-on-astro/)，已经加上基于 [giscus](https://github.com/giscus/giscus) 的评论功能，比 utterance 功能多了一些，但都需要用 Github 账号登录。只要照着一步一步进行，就能顺利实现。
 
-根据 [AULyPc 的这篇博客文章](https://blog.aulypc0x0.online/posts/add_friendspage_in_fuwari/)顺利在博客中添加了友链页面！终于不用在 About 下挂一个小标题了。Astro 添加导航标签还是需要改不少文件的，但这篇 Step-by-step 的教程非常直观实用。
+🔗 根据 [AULyPc 的这篇博客文章](https://blog.aulypc0x0.online/posts/add_friendspage_in_fuwari/)顺利在博客中添加了友链页面！终于不用在 About 下挂一个小标题了。Astro 添加导航标签还是需要改不少文件的，但这篇 Step-by-step 的教程非常直观实用。
 
 :::
 
-ID「半分星」的来历是 The Blue Hearts（ザ・ブルーハーツ）乐队「夕暮れ」中的一句「夕焼け空は赤い 炎のように赤い この**星の半分**を真っ赤に染めた」。如果对这个乐队感兴趣，除了可以[听他们的歌](https://music.163.com/#/artist?id=21827)，还可以去看 [THE ROLLING GIRLS](https://mzh.moegirl.org.cn/THE_ROLLING_GIRLS)，来自乐队粉丝的致敬之作。
+🪐 ID「半分星」的来历是 The Blue Hearts（ザ・ブルーハーツ）乐队「夕暮れ」中的一句「夕焼け空は赤い 炎のように赤い この***星の半分***を真っ赤に染めた」。如果对这个乐队感兴趣，除了可以[听他们的歌](https://music.163.com/#/artist?id=21827)，还可以去看 [THE ROLLING GIRLS](https://mzh.moegirl.org.cn/THE_ROLLING_GIRLS)，来自乐队粉丝的致敬之作。
 
-把各种东西都称作过爱好，但多数因为钱和毅力的问题搁置了（比如天文）。目前只有打游戏和看纸片人两个爱好。希望能有机会把之前的爱好都重新捡起来。
+🔭 把各种东西都称作过爱好，但多数因为钱和毅力的问题搁置了（比如天文）。目前只有打游戏和看纸片人两个爱好。希望能有机会把之前的爱好都重新捡起来。
 
-纸片人喜爱角色参考 BGM[「见一个爱一个系列（自用）」目录](https://bgm.tv/index/52067)。并没有及时更新，也没有完全补齐。
+💖 纸片人喜爱角色参考 BGM[「见一个爱一个系列（自用）」目录](https://bgm.tv/index/52067)。并没有及时更新，也没有完全补齐。
 
-玩游戏，主要是 PC 和 Switch。不擅长需要太多技术的游戏。为了不坑人联机很少（Switch 甚至没有买会员），即使联机也是 PVE 或者休闲模式。感觉很难像重度厨那样疯狂钻研一个游戏。时间有限，我是为了快乐来的。比较喜欢模拟经营类和单机剧情向 RPG（但我总是想，“RPG” 这个概念是不是有点太广了）。Galgame 和 AVG 不算在此列，广义的视觉小说我一直视作一种偏向书籍性质的阅读。
+🎮 玩游戏，主要是 PC 和 Switch。不擅长需要太多技术的游戏。为了不坑人联机很少（Switch 甚至没有买会员），即使联机也是 PVE 或者休闲模式。感觉很难像重度厨那样疯狂钻研一个游戏。时间有限，我是为了快乐来的。比较喜欢模拟经营类、战略类和单机剧情向 RPG（但我总是想，“RPG” 这个概念是不是有点太广了）。Galgame 和 AVG 不算在此列，广义的视觉小说我一直视作一种偏向书籍性质的阅读。
 
-声优喜欢悠木碧、植田佳奈和津田健次郎。
-Vtuber 看[花丸晴琉](https://space.bilibili.com/441381282)，但也是相当随缘地看；P 主喜欢[稲葉曇](https://www.nicovideo.jp/user/42833430)；歌手/唱见喜欢[ヰ世界情緒](https://space.bilibili.com/488978908/)和 [Ручной Рептилоид（也就是「手持爬行动物」或者「宠物蜥蜴娘」）](https://space.bilibili.com/3461582713522798)，当然，也不止于此；为动画创作作品的作曲/编曲家喜欢[大岛满](https://music.163.com/#/artist?id=17486)、[梶浦由记](https://mzh.moegirl.org.cn/%E6%A2%B6%E6%B5%A6%E7%94%B1%E8%AE%B0)和[伊藤真澄](https://bgm.tv/person/383)（马甲非常多，例如「七濑光」、「Oranges & Lemons（和上野洋子）」），都是为多部动画配乐，而且风格上都有相似之处。
+📢 声优喜欢悠木碧、植田佳奈和津田健次郎。
 
-我相信讨厌的人是知道有人讨厌他们的，不仅知道，而且还会以此为乐，认为对方破防了。所以何必写出来讨厌哪种人呢？大家自会对号入座。总结起来就是：使用搜索引擎、多做事实核查。顺便，如果「事实核查」四个字让你特别激动，那恭喜你，可以提前知道我讨厌你了。
+📖 没有「最喜欢的作家」、「最喜欢的书籍」这回事。我什么都看，但如果问细分领域喜欢哪些作家，还是可以说上几个的。
 
-过去的一年里（2024 年）个人的年度最佳游戏是[《近畿灵务局》](https://store.steampowered.com/app/2956820/__Kinki_Spiritual_Affairs_Bureau/)和[《异度之刃 3》](https://www.nintendo.com/jp/switch/az3ha/index.html)。很少玩当年新出作品，所以不管是什么评选基本都只是看看，顺便给《无人深空》投一个最佳运营/最佳长期支持之类的票（如果有的投）。
+🎥 没有「最喜欢的电影」这回事。至于最喜欢的导演——我觉得如果没有把 ta 的作品全都看了就不能在这里说最喜欢哪个导演。演员只眼熟几个。
 
-[Bangumi，是新号。太久以前的不包括，但二刷会补进来](https://bgm.tv/user/gembeta_kevin)；
+📺 Vtuber 看[花丸晴琉](https://space.bilibili.com/441381282)，但也是相当随缘地看；
 
-[来我豆瓣看我 2023 年 1 月开始都看了些什么东西](https://www.douban.com/people/gembeta000/)。
+🎵 P 主喜欢[稲葉曇](https://www.nicovideo.jp/user/42833430)；歌手/唱见喜欢[ヰ世界情緒](https://space.bilibili.com/488978908/)和 [Ручной Рептилоид（也就是「手持爬行动物」或者「宠物蜥蜴娘」）](https://space.bilibili.com/3461582713522798)，当然，也不止于此；为动画创作作品的作曲/编曲家喜欢[大岛满](https://music.163.com/#/artist?id=17486)、[梶浦由记](https://mzh.moegirl.org.cn/%E6%A2%B6%E6%B5%A6%E7%94%B1%E8%AE%B0)和[伊藤真澄](https://bgm.tv/person/383)（马甲非常多，例如「七濑光」、「Oranges & Lemons（和上野洋子）」），都是为多部动画配乐，而且风格上都有相似之处。
+
+😠 讨厌的人：我相信讨厌的人是知道有人讨厌他们的，不仅知道，而且还会以此为乐，认为对方破防了。所以何必写出来讨厌哪种人呢？大家自会对号入座。总结起来就是：使用搜索引擎、多做事实核查。顺便，如果「事实核查」四个字让你特别不满，那恭喜你，可以提前知道我讨厌你了。
+
+📅 过去的一年里（2024 年）个人的年度最佳游戏是[《近畿灵务局》](https://store.steampowered.com/app/2956820/__Kinki_Spiritual_Affairs_Bureau/)和[《异度之刃 3》](https://www.nintendo.com/jp/switch/az3ha/index.html)。很少玩当年新出作品，所以不管是什么评选基本都只是看看，顺便给《无人深空》投一个最佳运营/最佳长期支持之类的票（如果有的投）。
+
+[Bangumi，是新号。太久以前的不包括，但二刷会补进来，也不包括三次元的东西](https://bgm.tv/user/gembeta_kevin)；
+
+[来我豆瓣看我 2023 年 1 月开始都看了些什么东西，什么都有，除非豆瓣不收](https://www.douban.com/people/gembeta000/)；
+
+[NeoDB，不定期导入或者同步豆瓣和 Bangumi 上记录的条目](https://neodb.social/users/hanbun_hoshi/)。
