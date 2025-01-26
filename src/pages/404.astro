@@ -1,0 +1,24 @@
+---
+
+import MainGridLayout from '../layouts/MainGridLayout.astro'
+
+import { getEntry } from 'astro:content'
+import CommentSection from '@components/CommentSection.astro'
+import Markdown from '@components/misc/Markdown.astro'
+import I18nKey from '../i18n/i18nKey'
+import { i18n } from '../i18n/translation'
+
+const notFound = await getEntry('spec', '404')
+
+const { Content } = await notFound.render()
+---
+<MainGridLayout title={i18n(I18nKey.notfound)} description={i18n(I18nKey.notfound)}>
+    <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">
+        <div class="card-base z-10 px-9 py-6 relative w-full ">
+            <Markdown class="mt-2">
+                <Content />
+                <CommentSection />
+            </Markdown>
+        </div>
+    </div>
+</MainGridLayout>
