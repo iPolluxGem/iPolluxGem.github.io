@@ -1,5 +1,5 @@
 ---
-title: 2025 年第 5 周：过年
+title: 过年
 published: 2025-02-03
 tags: ['生活', '游戏', '书影音']
 category: '不规律周记'
