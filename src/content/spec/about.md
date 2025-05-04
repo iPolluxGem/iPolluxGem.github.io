@@ -18,7 +18,7 @@
 
 💬 根据 [VrianCao 的这篇博客文章](https://cf.vriancao.top/posts/giscus-on-astro/)，已经加上基于 [giscus](https://github.com/giscus/giscus) 的评论功能，比 utterance 功能多了一些，但都需要用 Github 账号登录。只要照着一步一步进行，就能顺利实现。
 
-🔗 根据 [AULyPc 的这篇博客文章](https://blog.aulypc0x0.online/posts/add_friendspage_in_fuwari/)顺利在博客中添加了友链页面！终于不用在 About 下挂一个小标题了。Astro 添加导航标签还是需要改不少文件的，但这篇 Step-by-step 的教程非常直观实用。
+🔗 根据 [AULyPc 的这篇博客文章](https://blog.aulypc0x0.online/posts/website/add_friendspage_in_fuwari/)顺利在博客中添加了友链页面！终于不用在 About 下挂一个小标题了。Astro 添加导航标签还是需要改不少文件的，但这篇 Step-by-step 的教程非常直观实用。
 
 :::
 
