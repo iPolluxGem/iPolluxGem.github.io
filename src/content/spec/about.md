@@ -36,16 +36,12 @@
 
 🎥 没有「最喜欢的电影」这回事。至于最喜欢的导演——我觉得如果没有把 ta 的作品全都看了就不能在这里说最喜欢哪个导演。演员只眼熟几个。
 
-📺 Vtuber 看[花丸晴琉](https://space.bilibili.com/441381282)，但也是相当随缘地看；
-
-🎵 P 主喜欢[稲葉曇](https://www.nicovideo.jp/user/42833430)；歌手/唱见喜欢[ヰ世界情緒](https://space.bilibili.com/488978908/)和 [Ручной Рептилоид（也就是「手持爬行动物」或者「宠物蜥蜴娘」）](https://space.bilibili.com/3461582713522798)，当然，也不止于此；为动画创作作品的作曲/编曲家喜欢[大岛满](https://music.163.com/#/artist?id=17486)、[梶浦由记](https://mzh.moegirl.org.cn/%E6%A2%B6%E6%B5%A6%E7%94%B1%E8%AE%B0)和[伊藤真澄](https://bgm.tv/person/383)（马甲非常多，例如「七濑光」、「Oranges & Lemons（和上野洋子）」），都是为多部动画配乐，而且风格上都有相似之处。
+🎵 P 主喜欢[稲葉曇](https://www.nicovideo.jp/user/42833430)；歌手/唱见喜欢[ヰ世界情緒](https://space.bilibili.com/488978908/)；当然，也不止于此；为动画创作作品的作曲/编曲家喜欢[大岛满](https://music.163.com/#/artist?id=17486)、[梶浦由记](https://mzh.moegirl.org.cn/%E6%A2%B6%E6%B5%A6%E7%94%B1%E8%AE%B0)和[伊藤真澄](https://bgm.tv/person/383)（马甲非常多，例如「七濑光」、「Oranges & Lemons（与上野洋子的组合）」），都是为多部动画配乐，而且风格上都有相似之处。
 
 😠 讨厌的人：我相信讨厌的人是知道有人讨厌他们的，不仅知道，而且还会以此为乐，认为对方破防了。所以何必写出来讨厌哪种人呢？大家自会对号入座。总结起来就是：使用搜索引擎、多做事实核查。顺便，如果「事实核查」四个字让你特别不满，那恭喜你，可以提前知道我讨厌你了。
 
 📅 过去的一年里（2024 年）个人的年度最佳游戏是[《近畿灵务局》](https://store.steampowered.com/app/2956820/__Kinki_Spiritual_Affairs_Bureau/)和[《异度之刃 3》](https://www.nintendo.com/jp/switch/az3ha/index.html)。很少玩当年新出作品，所以不管是什么评选基本都只是看看，顺便给《无人深空》投一个最佳运营/最佳长期支持之类的票（如果有的投）。
 
 [Bangumi，是新号。太久以前的不包括，但二刷会补进来，也不包括三次元的东西](https://bgm.tv/user/gembeta_kevin)；
-
-[来我豆瓣看我 2023 年 1 月开始都看了些什么东西，什么都有，除非豆瓣不收](https://www.douban.com/people/gembeta000/)；
 
 [NeoDB，不定期导入或者同步豆瓣和 Bangumi 上记录的条目](https://neodb.social/users/hanbun_hoshi/)。
