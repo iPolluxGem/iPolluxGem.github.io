@@ -1,7 +1,7 @@
 ---
 title: 2026 年第一季度书籍阅读回顾
 published: 2026-04-06
-tags: ['生活', '游戏', '书影音']
+tags: ['生活', '书影音']
 category: '广义阅读'
 draft: false
 ---
