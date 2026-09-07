@@ -13,10 +13,12 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "biomejs.biome"
   },
+  "[astro]": {
+    "editor.formatOnSave": false,
+    "editor.codeActionsOnSave": {}
+  },
   "editor.codeActionsOnSave": {
-    "source.fixAll": "explicit",
-    "quickfix.biome": "always",
-    "source.organizeImports.biome": "always"
+    "source.fixAll": "explicit"
   },
   "frontMatter.dashboard.openOnStart": false
 }

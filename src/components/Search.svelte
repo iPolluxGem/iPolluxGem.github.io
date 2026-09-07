@@ -72,8 +72,8 @@ $: search(keywordMobile, false)
 
 <!-- search bar for desktop view -->
 <div id="search-bar" class="hidden lg:flex transition-all items-center h-11 mr-2 rounded-lg
-      bg-black/[0.04] hover:bg-black/[0.06] focus-within:bg-black/[0.06]
-      dark:bg-white/5 dark:hover:bg-white/10 dark:focus-within:bg-white/10
+      bg-black/[0.04]
+      dark:bg-white/5
 ">
     <Icon icon="material-symbols:search" class="absolute text-[1.25rem] pointer-events-none ml-3 transition my-auto text-black/30 dark:text-white/30"></Icon>
     <input placeholder="{i18n(I18nKey.search)}" bind:value={keywordDesktop} on:focus={() => search(keywordDesktop, true)}
@@ -84,7 +84,7 @@ $: search(keywordMobile, false)
 
 <!-- toggle btn for phone/tablet view -->
 <button on:click={togglePanel} aria-label="Search Panel" id="search-switch"
-        class="btn-plain scale-animation lg:!hidden rounded-lg w-11 h-11 active:scale-90">
+        class="transition flex items-center justify-center lg:!hidden rounded-lg w-11 h-11 active:scale-90 text-black/75 hover:text-[var(--accent-navbar)] dark:text-white/75 dark:hover:text-[var(--accent-navbar)]">
     <Icon icon="material-symbols:search" class="text-[1.25rem]"></Icon>
 </button>
 

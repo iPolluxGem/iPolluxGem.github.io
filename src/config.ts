@@ -11,8 +11,8 @@ export const siteConfig: SiteConfig = {
   subtitle: '其出弥远，其知弥少',
   lang: 'zh_CN',         // 'en', 'zh_CN', 'zh_TW', 'ja', 'ko', 'es', 'th'
   themeColor: {
-    hue: 250,         // Default hue for the theme color, from 0 to 360. e.g. red: 0, teal: 200, cyan: 250, pink: 345
-    fixed: false,     // Hide the theme color picker for visitors
+    hue: 190,         // Background & neutral tint hue, matches the complementary color #38cdff (cool cyan)
+    fixed: true,      // Theme color picker removed; accent color fixed to #ff6a38
   },
   banner: {
     enable: false,
