@@ -4,6 +4,14 @@ import { url } from '@utils/url-utils.ts'
 import { i18n } from '@i18n/translation'
 import I18nKey from '@i18n/i18nKey'
 import Icon from '@iconify/svelte'
+
+declare global {
+  interface Window {
+    pagefind?: any
+    loadPagefind?: () => Promise<any>
+  }
+}
+
 let keywordDesktop = ''
 let keywordMobile = ''
 let result = []
@@ -32,13 +40,17 @@ onMount(() => {
     let panel = document.getElementById('search-panel')
     if (!panel) return
 
-    if (!keyword && isDesktop) {
-      panel.classList.add('float-panel-closed')
+    if (!keyword) {
+      if (isDesktop) panel.classList.add('float-panel-closed')
       return
     }
 
     let arr = []
     if (import.meta.env.PROD) {
+      const pagefind =
+        (window.loadPagefind ? await window.loadPagefind() : undefined) ??
+        window.pagefind
+      if (!pagefind) return
       const ret = await pagefind.search(keyword)
       for (const item of ret.results) {
         arr.push(await item.data())

@@ -101,14 +101,15 @@ document.addEventListener('astro:after-swap', () => {
 </script>
 
 {import.meta.env.PROD && <script is:inline define:vars={{scriptUrl: url('/pagefind/pagefind.js')}}>
-async function loadPagefind() {
+// Lazy-load Pagefind only when the user actually starts searching
+window.loadPagefind = async () => {
+    if (window.pagefind) return window.pagefind
     const pagefind = await import(scriptUrl)
     await pagefind.options({
         'excerptLength': 20
     })
     pagefind.init()
     window.pagefind = pagefind
-    pagefind.search('')     // speed up the first search
+    return pagefind
 }
-loadPagefind()
 </script>}
