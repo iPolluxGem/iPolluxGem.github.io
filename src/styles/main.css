@@ -157,3 +157,7 @@
 .collapsed {
     height: var(--collapsedHeight);
 }
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Noto Serif SC', 'Noto Serif', 'Songti SC', 'SimSun', 'Georgia', 'Times New Roman', serif;
+}

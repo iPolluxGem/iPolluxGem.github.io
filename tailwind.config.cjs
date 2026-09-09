@@ -1,5 +1,4 @@
 /** @type {import('tailwindcss').Config} */
-const defaultTheme = require('tailwindcss/defaultTheme')
 module.exports = {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue,mjs}'],
   darkMode: 'class', // allows toggling dark mode manually
@@ -18,7 +17,43 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ['Roboto', 'sans-serif', ...defaultTheme.fontFamily.sans],
+        sans: [
+          "LXGW WenKai",
+          "Noto Serif SC",
+          "Kaiti SC",
+          "KaiTi",
+          "STKaiti",
+          "serif",
+        ],
+        serif: [
+          "Noto Serif SC",
+          "Noto Serif",
+          "Songti SC",
+          "SimSun",
+          "Georgia",
+          "Times New Roman",
+          "serif",
+        ],
+        side: [
+          "Noto Sans SC",
+          "Noto Sans",
+          "PingFang SC",
+          "Microsoft YaHei",
+          "sans-serif",
+        ],
+        system: [
+          "system-ui",
+          "-apple-system",
+          "Segoe UI",
+          "PingFang SC",
+          "Microsoft YaHei",
+          "Helvetica Neue",
+          "Arial",
+          "Apple Color Emoji",
+          "Segoe UI Emoji",
+          "Noto Color Emoji",
+          "sans-serif",
+        ],
       },
     },
   },

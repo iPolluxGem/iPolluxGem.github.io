@@ -64,8 +64,8 @@ const mainPanelTop = siteConfig.banner.enable
 <div class="absolute w-full z-30 pointer-events-none" style=`top: ${mainPanelTop}`>
     <!-- The pointer-events-none here prevent blocking the click event of the TOC -->
     <div class="relative max-w-[var(--page-width)] mx-auto pointer-events-auto">
-        <div id="main-grid" class="transition duration-700 w-full left-0 right-0 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_16rem]
-    mx-auto gap-4 lg:gap-6 px-0 md:px-4"
+        <div id="main-grid" class="transition duration-700 w-full left-0 right-0 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_17rem]
+    mx-auto gap-4 lg:gap-[0.45rem] px-0 md:px-4"
         >
             <!-- Banner image credit -->
             {hasBannerCredit && <a href={siteConfig.banner.credit.url} id="banner-credit" target="_blank" rel="noopener" aria-label="Visit image source"
@@ -89,7 +89,7 @@ const mainPanelTop = siteConfig.banner.enable
                 </div>
             </main>
 
-            <aside class="onload-animation bg-[var(--card-bg)] rounded-[var(--radius-large)]">
+            <aside class="onload-animation bg-[var(--card-bg)] rounded-[var(--radius-large)] font-side">
                 <div class="h-full">
                     <Categories></Categories>
                     <div class="border-t border-[var(--line-color)] mx-4"></div>

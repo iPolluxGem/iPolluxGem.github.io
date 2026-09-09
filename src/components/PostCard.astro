@@ -42,7 +42,7 @@ const { remarkPluginFrontmatter } = await entry.render()
 <div class:list={["flex flex-col-reverse md:flex-col w-full relative", className]} style={style}>
     <div class:list={["pl-6 md:pl-9 pr-6 md:pr-2 pt-6 md:pt-7 pb-6 relative", {"w-full": !hasCover, "w-full md:w-[calc(100%_-_var(--coverWidth)_-_12px)]": hasCover}]}>
         <a href={url}
-           class="transition group w-full block font-bold mb-3 text-2xl text-90
+           class="transition group w-full block font-serif font-bold mb-3 text-2xl text-90
         hover:text-[var(--accent-content)] dark:hover:text-[var(--accent-content)]
         active:text-[var(--title-active)] dark:active:text-[var(--title-active)]
         ">

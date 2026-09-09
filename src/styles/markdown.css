@@ -31,7 +31,8 @@
     code {
         @apply bg-[var(--inline-code-bg)] text-[var(--inline-code-color)] px-1 py-0.5 rounded-md overflow-hidden;
 
-        font-family: 'JetBrains Mono Variable', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+        font-size: 14px;
+        font-family: 'Maple Mono', 'Maple Mono NF', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
         &:before {
             content:none;
         }
@@ -58,7 +59,7 @@
         @apply rounded-xl px-5;
 
         code {
-            @apply bg-transparent text-inherit text-sm p-0;
+            @apply bg-transparent text-inherit text-[14px] p-0;
 
             ::selection {
                 @apply bg-[var(--codeblock-selection)];

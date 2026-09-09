@@ -24,7 +24,7 @@ const style = Astro.props.style
     <div class="flex gap-1.5 flex-wrap items-center">
         {tags.map((t, index) => (
             <span class="flex items-center gap-1.5">
-                {index > 0 && <span class="text-30 select-none">·</span>}
+                {index > 0 && <span class="text-30 select-none">|</span>}
                 <ButtonTag href={url(`/archive/tag/${t.name}/`)} label={`View all posts with the ${t.name} tag`}>
                     {t.name}
                 </ButtonTag>
