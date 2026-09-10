@@ -169,6 +169,12 @@
     height: var(--collapsedHeight);
 }
 
+/* 正文（文章内容）字号：在根字号基础上 +1px，不影响 UI（UI 走 rem，随根字号）。
+   用 .custom-md.prose 提高优先级，压过 Tailwind Typography 的 .prose/.prose-base。 */
+.custom-md.prose {
+    font-size: calc(1rem + 1px);
+}
+
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Noto Serif SC', 'Noto Serif', 'Songti SC', 'SimSun', 'Georgia', 'Times New Roman', serif;
 }

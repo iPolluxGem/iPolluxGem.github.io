@@ -65,6 +65,11 @@ export const profileConfig: ProfileConfig = {
       icon: 'fa6-brands:bilibili',
       url: 'https://space.bilibili.com/68327955',
     },
+    {
+      name: 'Douban',
+      icon: 'ri:douban-fill',
+      url: 'https://www.douban.com/people/hanbunhs/',
+    },
   ],
 }
 

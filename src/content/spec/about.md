@@ -3,7 +3,7 @@
 **Dif-tor heh smusma.**
 
 > **这不是一个开发者博客。**
-> **THIS IS NOT A DEVELOPER'S BLOG.**
+> **THIS IS NOT A DEVELOPER'S BLOG.**</br>
 > **TIO NE ESTAS LA BLOGO DE PROGRAMISTO.**
 
 :::warning
@@ -19,6 +19,8 @@
 💬 根据 [VrianCao 的这篇博客文章](https://cf.vriancao.top/posts/giscus-on-astro/)，已经加上基于 [giscus](https://github.com/giscus/giscus) 的评论功能，比 utterance 功能多了一些，但都需要用 Github 账号登录。只要照着一步一步进行，就能顺利实现。
 
 🔗 根据 [AULyPc 的这篇博客文章](https://blog.aulypc0x0.online/posts/website/add_friendspage_in_fuwari/)顺利在博客中添加了友链页面！终于不用在 About 下挂一个小标题了。Astro 添加导航标签还是需要改不少文件的，但这篇 Step-by-step 的教程非常直观实用。
+
+**在模板修改、风格调整、问题修复的过程中，大量使用了 AI 来解决 Astro 框架中的问题，但文章内容均为古法人工撰写。**
 
 :::
 
@@ -38,19 +40,4 @@
 
 🎵 P 主喜欢[稲葉曇](https://www.nicovideo.jp/user/42833430)；为动画创作作品的作曲/编曲家喜欢[大岛满](https://music.163.com/#/artist?id=17486)、[梶浦由记](https://mzh.moegirl.org.cn/%E6%A2%B6%E6%B5%A6%E7%94%B1%E8%AE%B0)和[伊藤真澄](https://bgm.tv/person/383)（马甲非常多，例如「七濑光」、「Oranges & Lemons（与上野洋子的组合）」），都是为多部动画配乐，而且风格上都有相似之处。
 
-☀️ 我或许曾经有过不切实际的幻梦，但或许其实我渴望的其实是这样的生活：拥有一份能够充分实现自己能力和长处、工时合理、工资足够生存与生活的工作；下班后，与同样结束工作归家的伴侣在家共度时光或是拜访朋友；而休息日，阅读、玩不错的游戏，或是看一部电影，过后也有家人朋友或是不相对立的网络社区讨论和探索。打开新闻都是充满生命力的信息——世界不是混乱的、未来不是一片混沌的、生活与思想的空间不是愈发收窄的、可能性不是如同晨雾般难以把握的。
-
-七八岁的我曾经趴在窗台向下看。当时的我如果从了自己怪异的毁灭欲一跃而下，所有这些就都早就灰飞烟灭了，但我没有。那个孩子有一种无法言说的感觉，他甚至不确定它是否存在，但他好像在那一刻感受到了未来——不是像水晶球般的清晰影像，而是隐隐地预见到了，有些体验他注定此生只能幻想、生命的轨迹注定走向别处、感受质注定走向提早的终结。我就说，我为什么小时候想象不了自己的未来。或许我根本就没有未来。
-
-也许对于「共鸣」的追求是怪异的，但我相信自己并不特别，如果我可以是被经历塑造的复杂的并且是平凡的，那为什么不会有另一个同样被经历塑造的复杂的平凡的人恰好与我有相似的频率呢？
-
-
-
----
-
-
-
-[NeoDB，主要的阅读/观影/游戏标记](https://neodb.social/users/hanbun_hoshi/)。
-
-[Bangumi，是新号。太久以前的不包括，但二刷会补进来，也不包括三次元的东西](https://bgm.tv/user/gembeta_kevin)；
-
+📄 考虑到 [Bangumi](https://bgm.tv/user/gembeta_kevin) 和 [neoDB](https://neodb.social/users/hanbun_hoshi/) 目前的访问有一定的困难，[豆瓣](https://www.douban.com/people/hanbunhs/)现在是主要的标记平台。

@@ -4,6 +4,12 @@
    导致加载期间出现空白、只剩页脚的「黑白页面」闪烁，以及元素位移抖动。
    新内容的进入动画由下方的 .onload-animation 负责。 */
 
+/* swup 需要检测到一个非零的动画时长，否则每次切换都会在控制台告警。
+   这里只声明 1ms 的过渡：等价于「立即切换」，不引入任何可感知延迟。 */
+html.is-changing .transition-swup-fade {
+    transition: opacity 1ms linear;
+}
+
 /* Fade-in animations for components */
 @keyframes fade-in-up {
     0% {
