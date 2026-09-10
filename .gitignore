@@ -23,6 +23,9 @@ pnpm-debug.log*
 # MS-specific files
 desktop.ini
 
+# personal notes (not for git)
+blog-cheatsheet.md
+
 .vercel
 
 package-lock.json
