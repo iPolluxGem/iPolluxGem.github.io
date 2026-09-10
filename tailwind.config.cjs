@@ -18,14 +18,15 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: [
-          "LXGW WenKai",
-          "Noto Serif SC",
-          "Kaiti SC",
-          "KaiTi",
-          "STKaiti",
-          "serif",
+          "LXGW 975 Yuan SC",
+          "Noto Sans SC",
+          "Noto Sans",
+          "PingFang SC",
+          "Microsoft YaHei",
+          "sans-serif",
         ],
         serif: [
+          "WenJin Mincho",
           "Noto Serif SC",
           "Noto Serif",
           "Songti SC",
@@ -35,6 +36,7 @@ module.exports = {
           "serif",
         ],
         side: [
+          "LXGW 975 Yuan SC",
           "Noto Sans SC",
           "Noto Sans",
           "PingFang SC",

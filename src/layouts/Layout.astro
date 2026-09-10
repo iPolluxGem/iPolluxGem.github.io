@@ -148,14 +148,16 @@ const bannerOffset =
 		<slot name="head"></slot>
 
 		<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+		<!-- 本地子集字体：构建时由 scripts/subset-fonts.mjs 生成，只包含博客用到的字符 -->
+		<link rel="stylesheet" href="/fonts/subset-fonts.css" />
+		<link rel="preload" as="font" type="font/woff2" href="/fonts/LXGWWenKai-Regular.subset.woff2" crossorigin />
+		<link rel="preload" as="font" type="font/woff2" href="/fonts/WenJinMinchoP0-Regular.subset.woff2" crossorigin />
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/noto-serif@5/400.css" />
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/noto-serif@5/700.css" />
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/noto-serif-sc@5/400.css" />
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/noto-serif-sc@5/700.css" />
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/noto-sans-sc@5/400.css" />
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/noto-sans-sc@5/700.css" />
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont/lxgwwenkai-regular.css" />
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont/lxgwwenkai-bold.css" />
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/maple-mono@5/400.css" />
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/maple-mono@5/700.css" />
 

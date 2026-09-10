@@ -1,4 +1,6 @@
 .custom-md {
+    font-family: 'LXGW WenKai', 'Kaiti SC', 'KaiTi', 'STKaiti', serif;
+
     h1 {
         @apply text-3xl;
     }
@@ -35,7 +37,7 @@
         @apply bg-[var(--inline-code-bg)] text-[var(--inline-code-color)] px-1 py-0.5 rounded-md overflow-hidden;
 
         font-size: 14px;
-        font-family: 'Maple Mono', 'Maple Mono NF', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+        font-family: 'Maple Mono', 'Maple Mono NF', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, 'LXGW WenKai', monospace;
         &:before {
             content:none;
         }

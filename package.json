@@ -3,14 +3,16 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
+    "predev": "pnpm subset-fonts",
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build && pagefind --site dist",
+    "build": "pnpm subset-fonts && astro build && pagefind --site dist",
     "check": "astro check",
     "preview": "astro preview",
     "astro": "astro",
     "type-check": "tsc --noEmit --isolatedDeclarations",
     "new-post": "node scripts/new-post.js",
+    "subset-fonts": "node scripts/subset-fonts.mjs",
     "format": "biome format --write ./src",
     "lint": "biome check --write ./src",
     "preinstall": "npx only-allow pnpm"
@@ -50,6 +52,7 @@
     "sanitize-html": "^2.13.1",
     "sharp": "^0.33.5",
     "stylus": "^0.63.0",
+    "subset-font": "^2.7.0",
     "svelte": "^5.2.2",
     "tailwindcss": "^3.4.14",
     "typescript": "^5.6.3",
@@ -66,5 +69,10 @@
     "postcss-import": "^16.1.0",
     "postcss-nesting": "^13.0.1"
   },
-  "packageManager": "pnpm@9.14.4"
+  "packageManager": "pnpm@9.14.4",
+  "pnpm": {
+    "overrides": {
+      "@swup/head-plugin": "2.3.1"
+    }
+  }
 }
