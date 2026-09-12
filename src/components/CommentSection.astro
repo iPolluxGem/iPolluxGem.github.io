@@ -41,10 +41,24 @@
   const setInitialTheme = () => giscusScript()?.setAttribute('data-theme', giscusTheme())
   const pushTheme = () => {
     const frame = document.querySelector<HTMLIFrameElement>('iframe.giscus-frame')
-    frame?.contentWindow?.postMessage(
-      { giscus: { setConfig: { theme: giscusTheme() } } },
-      'https://giscus.app',
-    )
+    /* iframe 未加载完时（还在 about:blank）向它 postMessage，浏览器会以
+       "target origin 不匹配" 为由拒收并刷控制台警告，消息也会丢，所以先等加载完。 */
+    if (!frame?.dataset.giscusReady) return
+    try {
+      frame.contentWindow?.postMessage(
+        { giscus: { setConfig: { theme: giscusTheme() } } },
+        'https://giscus.app',
+      )
+    } catch {
+      /* 目标源不匹配时忽略，不影响初始 data-theme 已经设好的主题 */
+    }
+  }
+  /* iframe 的 load 不冒泡，用捕获阶段听：标记已加载 + 同步一次主题 */
+  const onFrameLoad = (event: Event) => {
+    const frame = event.target as HTMLIFrameElement | null
+    if (!frame || frame.tagName !== 'IFRAME' || !frame.classList.contains('giscus-frame')) return
+    frame.dataset.giscusReady = '1'
+    pushTheme()
   }
   const syncGiscusTheme = () => {
     setInitialTheme()
@@ -60,8 +74,8 @@
     new MutationObserver(syncGiscusTheme).observe(document.documentElement, {
       attributeFilter: ['class'],
     })
-    /* iframe 的 load 不冒泡，用捕获阶段听懒加载完成的那一刻 */
-    document.addEventListener('load', pushTheme, true)
+    /* iframe 的 load 不冒泡，用捕获阶段听懒加载完成的那一刻（同时记下已加载） */
+    document.addEventListener('load', onFrameLoad, true)
   }
 
   /* 评论 iframe 出现时同步一次（每次翻页都会重建，所以这段每次都执行） */
