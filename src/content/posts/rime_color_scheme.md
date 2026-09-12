@@ -1,5 +1,5 @@
 ---
-title: 自用 Rime 配色方案
+title: Rime 配色方案四种
 published: 2026-03-15
 tags: ['输入法', '工具', Rime]
 category: '瞎折腾'

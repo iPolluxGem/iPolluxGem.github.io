@@ -1,7 +1,7 @@
 ---
 title: 虫
 published: 2026-09-10
-tags: [练笔]
+tags: ['练笔']
 category: 练笔
 ---
 

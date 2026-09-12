@@ -1,7 +1,7 @@
 ---
 title: 没有体系的笔记体系
 published: 2026-09-11
-tags: [生活]
+tags: ['生活','笔记','工具']
 category: 瞎折腾
 ---
 
