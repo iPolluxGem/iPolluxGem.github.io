@@ -1,4 +1,6 @@
-/* 图片查看器：整体由“大黑底”改为半透明白底，图标/计数器/按钮随之转深色 */
+/* 图片查看器：整套配色随明暗主题切换（变量名沿用 photoswipe 自带皮肤，含义见其 dist/photoswipe.css）
+   亮色 = 半透明白底 + 深色图标 + 浅色按钮；暗色 = 半透明黑底 + 浅色图标 + 淡淡的白按钮。
+   按钮的三档底色（常态 / hover / 按下）也一并变量化，好让两种主题各取一套。 */
 .pswp {
     --pswp-bg: rgba(255, 255, 255, 0.9);
     --pswp-placeholder-bg: rgba(0, 0, 0, 0.06);
@@ -7,10 +9,35 @@
     --pswp-icon-stroke-color: rgba(255, 255, 255, 0.7);
     --pswp-preloader-color: rgba(0, 0, 0, 0.25);
     --pswp-preloader-color-secondary: rgba(0, 0, 0, 0.12);
+    --pswp-btn-bg: rgba(255, 255, 255, 0.4);
+    --pswp-btn-bg-hover: rgba(255, 255, 255, 0.5);
+    --pswp-btn-bg-active: rgba(255, 255, 255, 0.6);
+}
+
+.dark .pswp {
+    --pswp-bg: rgba(0, 0, 0, 0.9);
+    --pswp-placeholder-bg: rgba(255, 255, 255, 0.08);
+    --pswp-icon-color: rgba(255, 255, 255, 0.75);
+    /* 图标的次要细节色 / 描边色：亮色下取"比底色更亮"的白色（在白底上几乎看不见），
+       暗色下取相反的深色，作用一样是让图标压在照片上时仍有轮廓 */
+    --pswp-icon-color-secondary: rgba(0, 0, 0, 0.6);
+    --pswp-icon-stroke-color: rgba(0, 0, 0, 0.6);
+    --pswp-preloader-color: rgba(255, 255, 255, 0.25);
+    --pswp-preloader-color-secondary: rgba(255, 255, 255, 0.12);
+    --pswp-btn-bg: rgba(255, 255, 255, 0.1);
+    --pswp-btn-bg-hover: rgba(255, 255, 255, 0.16);
+    --pswp-btn-bg-active: rgba(255, 255, 255, 0.22);
 }
 
 .pswp__button {
-    @apply transition bg-white/40 hover:bg-white/50 active:bg-white/60 flex items-center justify-center mr-0 w-12 h-12 !important;
+    @apply transition flex items-center justify-center mr-0 w-12 h-12 !important;
+    background-color: var(--pswp-btn-bg) !important;
+}
+.pswp__button:hover {
+    background-color: var(--pswp-btn-bg-hover) !important;
+}
+.pswp__button:active {
+    background-color: var(--pswp-btn-bg-active) !important;
 }
 .pswp__button--zoom, .pswp__button--close {
     @apply mt-4 rounded-xl active:scale-90 !important;

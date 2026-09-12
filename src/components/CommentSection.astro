@@ -1,3 +1,11 @@
+<script is:inline>
+    /* 必须在下面那个 giscus 脚本之前执行：giscus 的 client.js 一运行就会用 replaceState
+       把返回 URL 上的 ?giscus=<session> 抹掉，所以先在这里把"这次是从授权流程回来的"记下来。 */
+    try {
+        if (/[?&]giscus=/.test(location.search)) sessionStorage.setItem('giscus-return', '1')
+    } catch (e) {}
+</script>
+
 <script is:inline src="https://giscus.app/client.js"
         data-repo="iPolluxGem/iPolluxGem.github.io"
         data-repo-id="R_kgDONmFaQQ"
@@ -13,4 +21,171 @@
         data-loading="lazy"
         crossorigin="anonymous"
         async>
+</script>
+
+<script>
+  /* giscus 自带明暗两套主题，这里把它和站点主题绑死（不提供任何独立开关）：
+     亮 → noborder_light，暗 → noborder_dark（与原来那套无边框主题配套）。
+     giscus 是懒加载（data-loading="lazy"），iframe 要滚到评论区才创建，所以分三步兜住：
+     ① 先把 giscus <script> 上的 data-theme 改成当前主题 —— 它初始化时读的就是这个属性，
+        暗色站点下因此不会先闪一下浅色评论框；
+     ② iframe 出现/加载完成后，用官方 postMessage API（setConfig.theme）再同步一次；
+     ③ <html> 的 class 一变就同步，覆盖导航栏手动切换与"跟随系统"下的系统主题变化。 */
+  const GISCUS_THEME = { light: 'noborder_light', dark: 'noborder_dark' }
+  const giscusTheme = () =>
+    document.documentElement.classList.contains('dark') ? GISCUS_THEME.dark : GISCUS_THEME.light
+
+  const giscusScript = () =>
+    document.querySelector<HTMLScriptElement>('script[src^="https://giscus.app/client.js"]')
+
+  const setInitialTheme = () => giscusScript()?.setAttribute('data-theme', giscusTheme())
+  const pushTheme = () => {
+    const frame = document.querySelector<HTMLIFrameElement>('iframe.giscus-frame')
+    frame?.contentWindow?.postMessage(
+      { giscus: { setConfig: { theme: giscusTheme() } } },
+      'https://giscus.app',
+    )
+  }
+  const syncGiscusTheme = () => {
+    setInitialTheme()
+    pushTheme()
+  }
+
+  syncGiscusTheme()
+
+  /* 站点主题变化：全局只绑一次（本脚本在 swup 翻页后会重新执行） */
+  const flags = window as unknown as { __giscusThemeBound?: boolean }
+  if (!flags.__giscusThemeBound) {
+    flags.__giscusThemeBound = true
+    new MutationObserver(syncGiscusTheme).observe(document.documentElement, {
+      attributeFilter: ['class'],
+    })
+    /* iframe 的 load 不冒泡，用捕获阶段听懒加载完成的那一刻 */
+    document.addEventListener('load', pushTheme, true)
+  }
+
+  /* 评论 iframe 出现时同步一次（每次翻页都会重建，所以这段每次都执行） */
+  const host = giscusScript()?.parentElement
+  if (host) {
+    const observer = new MutationObserver(() => {
+      if (!document.querySelector('iframe.giscus-frame')) return
+      pushTheme()
+      observer.disconnect()
+    })
+    observer.observe(host, { childList: true, subtree: true })
+  }
+
+  /* ── 登录后回到原处 ────────────────────────────────────────────────
+     giscus 的"使用 GitHub 登录"是 `<a target="_top">`：整页跳到 giscus.app → GitHub
+     授权，再跳回本页 —— 等于一次全新加载，所以浏览器从顶部开始。
+     跳转发生在跨域 iframe 里，拦不住；只能离开前记住位置、回来后还原，
+     并且**只认"刚从授权流程回来"这一种情况**（正常刷新、前进后退、点链接一律不干预）。
+     ① 整页离开时（pagehide）把 scrollY 连同 pathname 存进 sessionStorage
+        —— swup 的无缝翻页不触发 pagehide，所以不会污染这里；
+        （只存 pathname：giscus 返回时 URL 上会挂着 ?giscus=<session>，带 search 就对不上）
+     ② 回到本页时，只有确认"刚从授权流程回来"才还原：优先用文件开头那段 inline 脚本
+        抢先留下的标记（giscus 会在我们的脚本执行前就把 URL 上的参数抹掉），
+        其次看 URL 上还有没有 giscus 标记，最后看 referrer 是不是 giscus.app / github.com。 */
+  const SCROLL_KEY = 'giscus-return-scroll'
+  const RETURN_FLAG = 'giscus-return'
+  const SCROLL_TTL = 30 * 60 * 1000
+  interface SavedScroll {
+    path: string
+    y: number
+    t: number
+  }
+
+  const flag = (action: 'get' | 'clear') => {
+    try {
+      if (action === 'get') return sessionStorage.getItem(RETURN_FLAG)
+      sessionStorage.removeItem(RETURN_FLAG)
+    } catch {
+      /* 浏览器禁用存储时当作没有 */
+    }
+    return null
+  }
+
+  const readSavedScroll = (): SavedScroll | null => {
+    try {
+      const raw = sessionStorage.getItem(SCROLL_KEY)
+      return raw ? (JSON.parse(raw) as SavedScroll) : null
+    } catch {
+      return null /* 浏览器禁用存储时当作没存过 */
+    }
+  }
+
+  const saveScroll = () => {
+    try {
+      /* 只存 pathname：giscus 返回时 URL 上会挂着 ?giscus=<session>，带 search 就对不上了 */
+      sessionStorage.setItem(
+        SCROLL_KEY,
+        JSON.stringify({ path: location.pathname, y: Math.round(window.scrollY), t: Date.now() }),
+      )
+    } catch {
+      /* 存不进去就算了 */
+    }
+  }
+
+  const clearSavedScroll = () => {
+    try {
+      sessionStorage.removeItem(SCROLL_KEY)
+    } catch {
+      /* 同上 */
+    }
+  }
+
+  /* 是不是刚从 giscus 授权流程回来：① 上面那个 inline 脚本留下的标记（最可靠，
+     因为 giscus 会抢先抹掉 URL 上的参数）② URL 上还挂着 giscus= ③ referrer 来自
+     giscus.app / github.com（万一返回 URL 上什么都没有） */
+  const fromGiscusAuth = () => {
+    if (flag('get')) return true
+    return (
+      /(^|[?&#])giscus=/.test(location.search + location.hash) ||
+      /^https:\/\/(giscus\.app|github\.com)\//.test(document.referrer)
+    )
+  }
+
+  const savedScrollForThisPage = () => {
+    const saved = readSavedScroll()
+    if (!saved || saved.path !== location.pathname) return null
+    if (Date.now() - saved.t > SCROLL_TTL) return null
+    return saved.y
+  }
+
+  const restoreScroll = (y: number) => {
+    /* 图片、评论 iframe 都是加载后才撑开高度的，先滚一次再重试一会儿，直到真的到位；
+       期间用户一旦自己滚动（滚轮/触摸/按键）就立即罢手，免得到手把你拽回去。 */
+    const root = document.documentElement
+    const behavior = root.style.scrollBehavior
+    root.style.scrollBehavior = 'auto' /* 免得被 scroll-behavior: smooth 拖成动画 */
+    let tries = 0
+    let stopped = false
+    const stop = () => {
+      stopped = true
+      root.style.scrollBehavior = behavior
+    }
+    window.addEventListener('wheel', stop, { once: true, passive: true })
+    window.addEventListener('touchstart', stop, { once: true, passive: true })
+    window.addEventListener('keydown', stop, { once: true })
+    const step = () => {
+      if (stopped) return
+      window.scrollTo(0, y)
+      if (Math.abs(window.scrollY - y) > 2 && ++tries < 60) requestAnimationFrame(step)
+      else stop()
+    }
+    requestAnimationFrame(step)
+  }
+
+  window.addEventListener('pagehide', (event) => {
+    if (!event.persisted) saveScroll()
+  })
+
+  const backFromAuth = fromGiscusAuth()
+  flag('clear') /* 标记用完即删，免得以后随便一次刷新都被误判成"刚登录回来" */
+  const returnScroll = backFromAuth ? savedScrollForThisPage() : null
+  if (returnScroll !== null && returnScroll > 0) {
+    clearSavedScroll()
+    if (document.readyState === 'complete') restoreScroll(returnScroll)
+    else window.addEventListener('load', () => restoreScroll(returnScroll))
+  }
 </script>
