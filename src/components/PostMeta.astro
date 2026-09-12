@@ -33,7 +33,7 @@ const className = Astro.props.class
         <span class="flex items-center">
             <span class="mx-2 text-[var(--meta-divider)]">|</span>
             <a href={url(`/archive/category/${category || 'uncategorized'}/`)} aria-label={`View all posts in the ${category} category`}
-               class="transition hover:text-[var(--accent-content)] dark:hover:text-[var(--accent-content)] whitespace-nowrap">
+               class="transition hover:text-green whitespace-nowrap">
                 {category || i18n(I18nKey.uncategorized)}
             </a>
         </span>
@@ -42,9 +42,9 @@ const className = Astro.props.class
                 <span class="mx-2 text-[var(--meta-divider)]">|</span>
                 {tags.map((tag, i) => (
                     <span class="flex items-center">
-                        {i > 0 && <span class="mx-1">,</span>}
+                        {i > 0 && <span class="mx-1 text-[var(--meta-divider)]">,</span>}
                         <a href={url(`/archive/tag/${tag}/`)} aria-label={`View all posts with the ${tag} tag`}
-                           class="transition hover:text-[var(--accent-content)] dark:hover:text-[var(--accent-content)] whitespace-nowrap">
+                           class="transition hover:text-green whitespace-nowrap">
                             {tag}
                         </a>
                     </span>
@@ -94,8 +94,8 @@ const className = Astro.props.class
         </div>
         <div class="flex flex-row flex-nowrap items-center">
             <a href={url(`/archive/category/${category || 'uncategorized'}/`)} aria-label=`View all posts in the ${category} category`
-               class="link-lg transition text-50 text-sm font-medium
-                            hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap">
+               class="transition text-50 text-sm font-medium
+                            hover:text-green whitespace-nowrap">
                 {category || i18n(I18nKey.uncategorized)}
             </a>
         </div>
@@ -109,10 +109,10 @@ const className = Astro.props.class
         </div>
         <div class="flex flex-row flex-nowrap items-center">
             {(tags && tags.length > 0) && tags.map((tag, i) => (
-                <div class:list={[{"hidden": i == 0}, "mx-1.5 text-[var(--meta-divider)] text-sm"]}>/</div>
+                <div class:list={[{"hidden": i == 0}, "mx-1.5 text-[var(--meta-divider)] text-sm"]}>,</div>
                 <a href={url(`/archive/tag/${tag}/`)} aria-label=`View all posts with the ${tag} tag`
-                   class="link-lg transition text-50 text-sm font-medium
-                                hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap">
+                   class="transition text-50 text-sm font-medium
+                                hover:text-green whitespace-nowrap">
                     {tag}
                 </a>
             ))}

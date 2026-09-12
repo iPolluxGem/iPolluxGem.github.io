@@ -10,19 +10,12 @@ export const zh_TW: Translation = {
 
   [Key.tags]: '標籤',
   [Key.categories]: '分類',
-  [Key.recentPosts]: '最新文章',
 
-  [Key.comments]: '評論',
-
-  [Key.untitled]: '無標題',
   [Key.uncategorized]: '未分類',
   [Key.noTags]: '無標籤',
 
-  [Key.wordCount]: '字',
   [Key.wordsCount]: '字',
-  [Key.minuteCount]: '分鐘',
   [Key.minutesCount]: '分鐘',
-  [Key.postCount]: '篇文章',
   [Key.postsCount]: '篇文章',
 
   [Key.themeColor]: '主題色',

@@ -22,13 +22,14 @@ const style = Astro.props.style
 ---
 <WidgetLayout name={i18n(I18nKey.tags)} id="tags" isCollapsed={isCollapsed} collapsedHeight={COLLAPSED_HEIGHT} class={className} style={style}>
     <div class="flex gap-1.5 flex-wrap items-center">
-        {tags.map((t, index) => (
+        {tags.map(t => (
             <span class="flex items-center gap-1.5">
-                {index > 0 && <span class="text-30 select-none">|</span>}
+                <span class="text-30 select-none">|</span>
                 <ButtonTag href={url(`/archive/tag/${t.name}/`)} label={`View all posts with the ${t.name} tag`}>
                     {t.name}
                 </ButtonTag>
             </span>
         ))}
+        {tags.length > 0 && <span class="text-30 select-none">|</span>}
     </div>
 </WidgetLayout>

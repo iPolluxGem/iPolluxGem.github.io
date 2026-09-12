@@ -1,5 +1,16 @@
+/* 图片查看器：整体由“大黑底”改为半透明白底，图标/计数器/按钮随之转深色 */
+.pswp {
+    --pswp-bg: rgba(255, 255, 255, 0.9);
+    --pswp-placeholder-bg: rgba(0, 0, 0, 0.06);
+    --pswp-icon-color: rgba(0, 0, 0, 0.75);
+    --pswp-icon-color-secondary: rgba(255, 255, 255, 0.8);
+    --pswp-icon-stroke-color: rgba(255, 255, 255, 0.7);
+    --pswp-preloader-color: rgba(0, 0, 0, 0.25);
+    --pswp-preloader-color-secondary: rgba(0, 0, 0, 0.12);
+}
+
 .pswp__button {
-    @apply transition bg-black/40 hover:bg-black/50 active:bg-black/60 flex items-center justify-center mr-0 w-12 h-12 !important;
+    @apply transition bg-white/40 hover:bg-white/50 active:bg-white/60 flex items-center justify-center mr-0 w-12 h-12 !important;
 }
 .pswp__button--zoom, .pswp__button--close {
     @apply mt-4 rounded-xl active:scale-90 !important;

@@ -12,12 +12,40 @@ const className = Astro.props.class
 </div>
 
 <script>
-  const observer = new MutationObserver(addPreCopyButton);
+  const observer = new MutationObserver(addCodeBlockButtons);
   observer.observe(document.body, { childList: true, subtree: true });
   
-  document.addEventListener("DOMContentLoaded", addPreCopyButton);
+  document.addEventListener("DOMContentLoaded", addCodeBlockButtons);
 
-  function addPreCopyButton() {
+  /* 强制明暗的状态记在 sessionStorage（关掉标签页即失效）。
+     key 用代码块自身内容的短哈希，而不是“路径 + 序号”：swup 换页时脚本可能先于
+     URL 更新执行，用路径会读到上一页的值；用内容则与时机、顺序都无关。 */
+  const blockKey = (codeBlock: HTMLPreElement) => {
+    const text = (codeBlock.textContent ?? "").trim();
+    let hash = 0;
+    for (let i = 0; i < text.length; i++) hash = (hash * 31 + text.charCodeAt(i)) | 0;
+    return `code-block-theme:${text.length}:${hash}`;
+  };
+  const readForced = (key: string) => {
+    try {
+      return sessionStorage.getItem(key);
+    } catch {
+      return null; /* 浏览器禁用存储时当“没记过”处理 */
+    }
+  };
+  const writeForced = (key: string, value: string | null) => {
+    try {
+      if (value) sessionStorage.setItem(key, value);
+      else sessionStorage.removeItem(key);
+    } catch {
+      /* 存不进去就算了，不影响本次浏览 */
+    }
+  };
+
+  /* 代码块右上角按钮组：
+     - 切换明暗：给 wrapper 加 .code-force-light / .code-force-dark，忽略站点主题；
+     - 复制：原有行为不变。 */
+  function addCodeBlockButtons() {
     observer.disconnect();
     
     let codeBlocks = Array.from(document.querySelectorAll("pre"));
@@ -28,21 +56,55 @@ const className = Astro.props.class
       let wrapper = document.createElement("div");
       wrapper.className = "relative code-block";
 
+      /* 恢复这个代码块上次被强制成的明暗（没记过就跟随站点主题） */
+      const storageKey = blockKey(codeBlock);
+      const savedForced = readForced(storageKey);
+      if (savedForced === "dark") wrapper.classList.add("code-force-dark");
+      else if (savedForced === "light") wrapper.classList.add("code-force-light");
+
+      let actions = document.createElement("div");
+      actions.className = "code-actions absolute top-2 right-2 flex gap-1";
+
+      let themeButton = document.createElement("button");
+      themeButton.className = "code-btn code-theme-btn relative h-8 w-8 rounded-lg opacity-75 transition-all ease-in-out active:scale-90";
+      themeButton.ariaLabel = "切换代码块明暗";
+      themeButton.title = "切换代码块明暗（忽略站点主题，再点一下回到跟随主题）";
+
       let copyButton = document.createElement("button");
-      copyButton.className = "copy-btn btn-regular-dark absolute active:scale-90 h-8 w-8 top-2 right-2 opacity-75 text-sm p-1.5 rounded-lg transition-all ease-in-out";
+      copyButton.className = "code-btn copy-btn relative h-8 w-8 rounded-lg opacity-75 transition-all ease-in-out active:scale-90";
+      copyButton.ariaLabel = "复制代码";
 
       codeBlock.setAttribute("tabindex", "0");
       if (codeBlock.parentNode) {
         codeBlock.parentNode.insertBefore(wrapper, codeBlock);
       }
 
-      let copyIcon = `<svg class="copy-btn-icon copy-icon" xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px"><path d="M368.37-237.37q-34.48 0-58.74-24.26-24.26-24.26-24.26-58.74v-474.26q0-34.48 24.26-58.74 24.26-24.26 58.74-24.26h378.26q34.48 0 58.74 24.26 24.26 24.26 24.26 58.74v474.26q0 34.48-24.26 58.74-24.26 24.26-58.74 24.26H368.37Zm0-83h378.26v-474.26H368.37v474.26Zm-155 238q-34.48 0-58.74-24.26-24.26-24.26-24.26-58.74v-515.76q0-17.45 11.96-29.48 11.97-12.02 29.33-12.02t29.54 12.02q12.17 12.03 12.17 29.48v515.76h419.76q17.45 0 29.48 11.96 12.02 11.97 12.02 29.33t-12.02 29.54q-12.03 12.17-29.48 12.17H213.37Zm155-238v-474.26 474.26Z"/></svg>`
-      let successIcon = `<svg class="copy-btn-icon success-icon" xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px"><path d="m389-377.13 294.7-294.7q12.58-12.67 29.52-12.67 16.93 0 29.61 12.67 12.67 12.68 12.67 29.53 0 16.86-12.28 29.14L419.07-288.41q-12.59 12.67-29.52 12.67-16.94 0-29.62-12.67L217.41-430.93q-12.67-12.68-12.79-29.45-.12-16.77 12.55-29.45 12.68-12.67 29.62-12.67 16.93 0 29.28 12.67L389-377.13Z"/></svg>`
-      copyButton.innerHTML = `<div>${copyIcon} ${successIcon}</div>
-      `
+      let copyIcon = `<svg class="swap-icon copy-icon" xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px"><path d="M368.37-237.37q-34.48 0-58.74-24.26-24.26-24.26-24.26-58.74v-474.26q0-34.48 24.26-58.74 24.26-24.26 58.74-24.26h378.26q34.48 0 58.74 24.26 24.26 24.26 24.26 58.74v474.26q0 34.48-24.26 58.74-24.26 24.26-58.74 24.26H368.37Zm0-83h378.26v-474.26H368.37v474.26Zm-155 238q-34.48 0-58.74-24.26-24.26-24.26-24.26-58.74v-515.76q0-17.45 11.96-29.48 11.97-12.02 29.33-12.02t29.54 12.02q12.17 12.03 12.17 29.48v515.76h419.76q17.45 0 29.48 11.96 12.02 11.97 12.02 29.33t-12.02 29.54q-12.03 12.17-29.48 12.17H213.37Zm155-238v-474.26 474.26Z"/></svg>`
+      let successIcon = `<svg class="swap-icon success-icon" xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px"><path d="m389-377.13 294.7-294.7q12.58-12.67 29.52-12.67 16.93 0 29.61 12.67 12.67 12.68 12.67 29.53 0 16.86-12.28 29.14L419.07-288.41q-12.59 12.67-29.52 12.67-16.94 0-29.62-12.67L217.41-430.93q-12.67-12.68-12.79-29.45-.12-16.77 12.55-29.45 12.68-12.67 29.62-12.67 16.93 0 29.28 12.67L389-377.13Z"/></svg>`
+      /* 图标路径与 src/components/icon-data.ts 里主题切换按钮用的是同一套
+         （Material Symbols），保证代码块按钮和导航栏主题按钮视觉一致 */
+      let iconToDark = `<svg class="swap-icon icon-to-dark" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="20"><path d="M12 21q-3.775 0-6.387-2.613T3 12q0-3.45 2.25-5.988T11 3.05q.325-.05.575.088t.4.362t.163.525t-.188.575q-.425.65-.638 1.375T11.1 7.5q0 2.25 1.575 3.825T16.5 12.9q.775 0 1.538-.225t1.362-.625q.275-.175.563-.162t.512.137q.25.125.388.375t.087.6q-.35 3.45-2.937 5.725T12 21m0-2q2.2 0 3.95-1.213t2.55-3.162q-.5.125-1 .2t-1 .075q-3.075 0-5.238-2.163T9.1 7.5q0-.5.075-1t.2-1q-1.95.8-3.163 2.55T5 12q0 2.9 2.05 4.95T12 19m-.25-6.75"/></svg>`
+      let iconToLight = `<svg class="swap-icon icon-to-light" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="20"><path d="M11 3V2q0-.425.288-.712T12 1t.713.288T13 2v1q0 .425-.288.713T12 4t-.712-.288T11 3m0 19v-1q0-.425.288-.712T12 20t.713.288T13 21v1q0 .425-.288.713T12 23t-.712-.288T11 22m11-9h-1q-.425 0-.712-.288T20 12t.288-.712T21 11h1q.425 0 .713.288T23 12t-.288.713T22 13M3 13H2q-.425 0-.712-.288T1 12t.288-.712T2 11h1q.425 0 .713.288T4 12t-.288.713T3 13m16.75-7.325l-.35.35q-.275.275-.687.275T18 6q-.275-.275-.288-.687t.263-.713l.375-.375q.275-.3.7-.3t.725.3t.288.725t-.313.725M6.025 19.4l-.375.375q-.275.3-.7.3t-.725-.3t-.288-.725t.313-.725l.35-.35q.275-.275.688-.275T6 18q.275.275.288.688t-.263.712m12.3.35l-.35-.35q-.275-.275-.275-.687T18 18q.275-.275.688-.287t.712.262l.375.375q.3.275.3.7t-.3.725t-.725.288t-.725-.313M4.6 6.025l-.375-.375q-.3-.275-.3-.7t.3-.725t.725-.288t.725.313l.35.35q.275.275.275.688T6 6q-.275.275-.687.288T4.6 6.025M12 18q-2.5 0-4.25-1.75T6 12t1.75-4.25T12 6t4.25 1.75T18 12t-1.75 4.25T12 18m0-2q1.675 0 2.838-1.162T16 12t-1.162-2.838T12 8T9.162 9.163T8 12t1.163 2.838T12 16m0-4"/></svg>`
+      themeButton.innerHTML = `${iconToDark}${iconToLight}`
+
+      copyButton.innerHTML = `${copyIcon}${successIcon}`
+
+      themeButton.addEventListener("click", () => {
+        /* 两种状态循环：跟随站点主题 ⇄ 强制与站点主题相反的那一种（忽略主题）。
+           按钮图标始终表示"点一下会变成什么"：亮色块显示月亮、暗色块显示太阳。 */
+        const forced = wrapper.classList.contains("code-force-light") || wrapper.classList.contains("code-force-dark");
+        const siteDark = document.documentElement.classList.contains("dark");
+        const forceDark = !forced && !siteDark;
+        const forceLight = !forced && siteDark;
+        wrapper.classList.toggle("code-force-dark", forceDark);
+        wrapper.classList.toggle("code-force-light", forceLight);
+        writeForced(storageKey, forceDark ? "dark" : forceLight ? "light" : null);
+      });
 
       wrapper.appendChild(codeBlock);
-      wrapper.appendChild(copyButton);
+      actions.appendChild(themeButton);
+      actions.appendChild(copyButton);
+      wrapper.appendChild(actions);
 
       let timeout: ReturnType<typeof setTimeout>;
       copyButton.addEventListener("click", async () => {

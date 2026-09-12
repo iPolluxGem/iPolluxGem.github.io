@@ -5,7 +5,8 @@ import { Icon } from 'astro-icon/components'
 <!-- There can't be a filter on parent element, or it will break `fixed` -->
 <div class="back-to-top-wrapper hidden lg:block">
     <div id="back-to-top-btn" class="back-to-top-btn hide flex items-center rounded-2xl overflow-hidden transition" onclick="backToTop()">
-        <button aria-label="Back to Top" class="btn-card h-[3.75rem] w-[3.75rem]">
+        <!-- 归入 .icon-btn（尺寸与颜色角色用工具类覆盖：它是绿色图标按钮，hover 用 green-deep） -->
+        <button aria-label="Back to Top" class="icon-btn h-[3.75rem] w-[3.75rem] text-green hover:text-green-deep">
             <Icon name="material-symbols:keyboard-arrow-up-rounded" class="mx-auto"></Icon>
         </button>
     </div>
@@ -37,8 +38,6 @@ import { Icon } from 'astro-icon/components'
         transform: translateX(5rem) scale(0.9)
         opacity: 0
         pointer-events: none
-    &:active
-      transform: translateX(5rem) scale(0.9)
 
 </style>
 

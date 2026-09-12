@@ -26,7 +26,7 @@ const links: NavBarLink[] = navBarConfig.links.map(
         <div class="hidden md:flex items-center gap-1">
             {profileConfig.links.map(item =>
                 <a rel="me" aria-label={item.name} href={item.url} target="_blank"
-                   class="transition flex items-center justify-center rounded-lg h-11 w-11 active:scale-90 text-black/75 hover:text-[var(--accent-navbar)] dark:text-white/75 dark:hover:text-[var(--accent-navbar)]">
+                   class="icon-btn h-11 w-11 rounded-lg text-75 hover:text-green">
                     <Icon name={item.icon} class="text-[1.5rem]"></Icon>
                 </a>
             )}
@@ -34,8 +34,7 @@ const links: NavBarLink[] = navBarConfig.links.map(
         <div class="hidden md:flex">
             {links.map((l) => {
                 return <a aria-label={l.name} href={l.external ? l.url : url(l.url)} target={l.external ? "_blank" : null}
-                          class="transition flex items-center rounded-lg h-11 font-bold px-5 active:scale-95
-                          text-black/75 hover:text-[var(--accent-navbar)] dark:text-white/75 dark:hover:text-[var(--accent-navbar)]"
+                          class="nav-link"
                 >
                     <div class="flex items-center">
                         {l.name}
@@ -48,7 +47,7 @@ const links: NavBarLink[] = navBarConfig.links.map(
             <!--<SearchPanel client:load>-->
             <Search client:load></Search>
             <LightDarkSwitch client:load></LightDarkSwitch>
-            <button aria-label="Menu" name="Nav Menu" class="transition flex items-center justify-center rounded-lg w-11 h-11 active:scale-90 md:!hidden text-black/75 hover:text-[var(--accent-navbar)] dark:text-white/75 dark:hover:text-[var(--accent-navbar)]" id="nav-menu-switch">
+            <button aria-label="Menu" name="Nav Menu" class="icon-btn h-11 w-11 rounded-lg text-75 hover:text-green md:!hidden" id="nav-menu-switch">
                 <Icon name="material-symbols:menu-rounded" class="text-[1.25rem]"></Icon>
             </button>
         </div>

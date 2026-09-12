@@ -96,7 +96,12 @@ export function GithubCardComponent(properties, children) {
     [
       nTitle,
       nDescription,
-      h('div', { class: 'gc-infobar' }, [nStars, nForks, nLicense, nLanguage]),
+            h('div', { class: 'gc-infobar' }, [
+                nStars,
+                nForks,
+                nLicense,
+                nLanguage,
+            ]),
       nScript,
     ],
   )

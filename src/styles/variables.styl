@@ -5,9 +5,6 @@ white(a)
 black(a)
   rgba(0, 0, 0, a)
 
-rainbow-light = linear-gradient(to right, oklch(0.80 0.10 0), oklch(0.80 0.10 30), oklch(0.80 0.10 60), oklch(0.80 0.10 90), oklch(0.80 0.10 120), oklch(0.80 0.10 150), oklch(0.80 0.10 180), oklch(0.80 0.10 210), oklch(0.80 0.10 240), oklch(0.80 0.10 270), oklch(0.80 0.10 300), oklch(0.80 0.10 330), oklch(0.80 0.10 360))
-rainbow-dark = linear-gradient(to right, oklch(0.70 0.10 0), oklch(0.70 0.10 30), oklch(0.70 0.10 60), oklch(0.70 0.10 90), oklch(0.70 0.10 120), oklch(0.70 0.10 150), oklch(0.70 0.10 180), oklch(0.70 0.10 210), oklch(0.70 0.10 240), oklch(0.70 0.10 270), oklch(0.70 0.10 300), oklch(0.70 0.10 330), oklch(0.70 0.10 360))
-
 :root
   --radius-large 4px
   --content-delay 150ms
@@ -23,31 +20,41 @@ define(vars)
         {key}: value[1]
 
 define({
+  /* ── 颜色基准（改颜色只改这里）───────────────────────────────
+     主题绿只有一个来源：--primary */
+  /* --accent-navbar / --accent-content 两个历史别名已零引用，2026-09-12 注释 */
+  // --accent-navbar: var(--primary)
+  // --accent-content: var(--primary)
   --primary: #009e61
-  --accent-navbar: #009e61
-  --accent-content: #009e61
+
+  /* 绿色文字的 hover 强调色：亮 / 暗。
+     深绿 #376d4d 在暗色卡片底上对比度只有 ~2.8:1，故暗色换浅绿（~14:1）。 */
+  --accent-hover: #376d4d #ddeee4
+
+  /* 黑/灰文字档位：亮 / 暗（见 main.css 的 .text-90/.text-75/...）。
+     刻意用单条 color 声明表达、不带 dark: 变体，这样任何 hover:text-* 工具类
+     都能稳定压过它；否则暗色下 .dark:text-*（同为 0,2,0 且排在后）会把 hover 色吃掉。 */
+  --text-90: black(0.9) white(0.9)
+  --text-75: black(0.75) white(0.75)
+  --text-50: black(0.5) white(0.5)
+  --text-30: black(0.3) white(0.3)
+  /* --text-25 零引用（.text-25 已注释），2026-09-12 */
+  // --text-25: black(0.25) white(0.25)
+
   --page-bg: white oklch(0.16 0.014 var(--hue))
   --card-bg: white oklch(0.23 0.015 var(--hue))
 
   --btn-content: oklch(0.55 0.12 var(--hue)) oklch(0.75 0.1 var(--hue))
 
   --btn-regular-bg: oklch(0.95 0.025 var(--hue)) oklch(0.33 0.035 var(--hue))
-  --btn-regular-bg-hover: oklch(0.9 0.05 var(--hue)) oklch(0.38 0.04 var(--hue))
-  --btn-regular-bg-active: oklch(0.85 0.08 var(--hue)) oklch(0.43 0.045 var(--hue))
-
-  --btn-plain-bg-hover: oklch(0.95 0.025 var(--hue)) oklch(0.30 0.035 var(--hue))
-  --btn-plain-bg-active: oklch(0.98 0.01 var(--hue)) oklch(0.27 0.025 var(--hue))
-
-  --btn-card-bg-hover: oklch(0.98 0.005 var(--hue)) oklch(0.3 0.03 var(--hue))
-  --btn-card-bg-active: oklch(0.9 0.03 var(--hue)) oklch(0.35 0.035 var(--hue))
-
-  --enter-btn-bg: var(--btn-regular-bg)
-  --enter-btn-bg-hover: var(--btn-regular-bg-hover)
-  --enter-btn-bg-active: var(--btn-regular-bg-active)
+  /* --btn-regular-bg-hover / -active 只被已注释的 .btn-regular 使用，2026-09-12 注释 */
+  // --btn-regular-bg-hover: oklch(0.9 0.05 var(--hue)) oklch(0.38 0.04 var(--hue))
+  // --btn-regular-bg-active: oklch(0.85 0.08 var(--hue)) oklch(0.43 0.045 var(--hue))
 
   --deep-text: oklch(0.25 0.02 var(--hue))
 
-  --title-active: oklch(0.6 0.1 var(--hue))
+  /* --title-active 零引用（首页卡片标题按下不再变色），2026-09-12 注释 */
+  // --title-active: oklch(0.6 0.1 var(--hue))
 
   --line-divider: black(0.08) white(0.08)
 
@@ -57,14 +64,44 @@ define({
   --inline-code-bg: var(--btn-regular-bg)
   --inline-code-color: var(--btn-content)
   --selection-bg: oklch(0.90 0.05 var(--hue)) oklch(0.40 0.08 var(--hue))
-  --codeblock-selection: oklch(0.40 0.08 var(--hue))
-  --codeblock-bg: oklch(0.2 0.015 var(--hue)) oklch(0.17 0.015 var(--hue))
+
+  /* ── 代码块配色 ─────────────────────────────────────────────────
+     代码块有「亮色 / 暗色两种形态」（语法色来自 Shiki 的 github-light / github-dark，
+     见 astro.config.mjs），右上角按钮还能忽略站点主题强制某一种。
+     所以这里每种颜色都给亮/暗两个单值；紧跟着的 --codeblock-* 是"跟随站点主题"的
+     别名，由 markdown.css 按当前状态在 wrapper 上重新指向其中一个单值。
+     要改代码块颜色，只改上面的单值即可。 */
+  --codeblock-bg-light: oklch(0.96 0.01 var(--hue))
+  --codeblock-bg-dark: oklch(0.17 0.015 var(--hue))
+  --codeblock-line-light: black(0.3)
+  --codeblock-line-dark: white(0.3)
+  --codeblock-selection-light: oklch(0.88 0.06 var(--hue))
+  --codeblock-selection-dark: oklch(0.40 0.08 var(--hue))
+  --codeblock-btn-bg-light: oklch(0.90 0.012 var(--hue))
+  --codeblock-btn-bg-hover-light: oklch(0.86 0.016 var(--hue))
+  --codeblock-btn-bg-active-light: oklch(0.82 0.02 var(--hue))
+  --codeblock-btn-fg-light: var(--deep-text)
+  --codeblock-btn-bg-dark: oklch(0.30 0.02 var(--hue))
+  --codeblock-btn-bg-hover-dark: oklch(0.35 0.03 var(--hue))
+  --codeblock-btn-bg-active-dark: oklch(0.40 0.03 var(--hue))
+  --codeblock-btn-fg-dark: white(0.75)
+  /* 跟随站点主题的别名（给不在 .code-block 作用域里的使用者，如 --license-block-bg） */
+  --codeblock-bg: var(--codeblock-bg-light) var(--codeblock-bg-dark)
+  --codeblock-line: var(--codeblock-line-light) var(--codeblock-line-dark)
+  --codeblock-selection: var(--codeblock-selection-light) var(--codeblock-selection-dark)
+  --codeblock-btn-bg: var(--codeblock-btn-bg-light) var(--codeblock-btn-bg-dark)
+  --codeblock-btn-bg-hover: var(--codeblock-btn-bg-hover-light) var(--codeblock-btn-bg-hover-dark)
+  --codeblock-btn-bg-active: var(--codeblock-btn-bg-active-light) var(--codeblock-btn-bg-active-dark)
+  --codeblock-btn-fg: var(--codeblock-btn-fg-light) var(--codeblock-btn-fg-dark)
+
+  /* 防剧透遮罩（{% spoiler %}）：用"和正文文字一样的颜色"把文字盖住。
+     值刻意写成 currentColor 而不是具体色值 —— 遮罩色就等于该处的文字颜色
+     （正文文字色来自 Tailwind Typography 的 --tw-prose-body / prose-invert，
+     即亮 #374151 / 暗 #d1d5db），以后改正文颜色不用同步改这里。
+     也刻意与代码块脱钩：代码块被强制明暗时，正文遮罩不受影响。 */
+  --spoiler-bg: currentColor
 
   --license-block-bg: black(0.03) var(--codeblock-bg)
-
-  --link-underline: oklch(0.93 0.04 var(--hue)) oklch(0.40 0.08 var(--hue))
-  --link-hover: oklch(0.95 0.025 var(--hue)) oklch(0.40 0.08 var(--hue))
-  --link-active: oklch(0.90 0.05 var(--hue)) oklch(0.35 0.07 var(--hue))
 
   --float-panel-bg: white oklch(0.19 0.015 var(--hue))
 
@@ -80,20 +117,11 @@ define({
   --scrollbar-bg-hover: var(--scrollbar-bg-hover-light) var(--scrollbar-bg-hover-dark)
   --scrollbar-bg-active: var(--scrollbar-bg-active-light) var(--scrollbar-bg-active-dark)
 
-  --color-selection-bar: rainbow-light rainbow-dark
-
-  --display-light-icon: 1 0
-  --display-dark-icon: 0 1
-
   --admonitions-color-tip: oklch(0.7 0.14 180) oklch(0.75 0.14 180)
   --admonitions-color-note: oklch(0.7 0.14 250) oklch(0.75 0.14 250)
   --admonitions-color-important: oklch(0.7 0.14 310) oklch(0.75 0.14 310)
   --admonitions-color-warning: oklch(0.7 0.14 60) oklch(0.75 0.14 60)
   --admonitions-color-caution: oklch(0.6 0.2 25) oklch(0.65 0.2 25)
 
-  --toc-badge-bg: oklch(0.9 0.045 var(--hue)) var(--btn-regular-bg)
-  --toc-btn-hover: oklch(0.92 0.015 var(--hue)) oklch(0.22 0.02 var(--hue))
-  --toc-btn-active: oklch(0.90 0.015 var(--hue)) oklch(0.25 0.02 var(--hue))
   --toc-width: calc((100vw - var(--page-width)) / 2 - 1rem)
-  --toc-item-active: oklch(0.70 0.13 var(--hue)) oklch(0.35 0.07 var(--hue))
 })

@@ -5,7 +5,6 @@ import swup from '@swup/astro'
 import Compress from 'astro-compress'
 import icon from 'astro-icon'
 import { defineConfig } from 'astro/config'
-import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeComponents from 'rehype-components' /* Render the custom directive content */
 import rehypeKatex from 'rehype-katex'
 import rehypeSlug from 'rehype-slug'
@@ -41,14 +40,7 @@ export default defineConfig({
       updateBodyClass: false,
       globalInstance: true,
     }),
-    icon({
-      include: {
-        'preprocess: vitePreprocess(),': ['*'],
-        'fa6-brands': ['*'],
-        'fa6-regular': ['*'],
-        'fa6-solid': ['*'],
-      },
-    }),
+    icon(),
     svelte(),
     sitemap(),
     Compress({
@@ -60,6 +52,16 @@ export default defineConfig({
     }),
   ],
   markdown: {
+    shikiConfig: {
+      // ── 代码块明暗双主题 ─────────────────────────────────────────
+      // 亮色用 github-light、暗色用 github-dark（都是 Shiki 内置主题，零额外依赖）。
+      // defaultColor: false 让 Shiki 不再写死内联颜色，改为在 pre 与每个 token 上输出
+      // --shiki-light / --shiki-dark 变量，由 markdown.css 按当前状态取用。
+      // 状态有三种：跟随站点主题（默认）/ 强制亮色 / 强制暗色；后两者由代码块右上角的
+      // 按钮切换（忽略站点主题），样式见 markdown.css 的「代码块明暗双主题」。
+      themes: { light: 'github-light', dark: 'github-dark' },
+      defaultColor: false,
+    },
     remarkPlugins: [
       remarkMath,
       remarkReadingTime,
@@ -82,29 +84,6 @@ export default defineConfig({
             important: (x, y) => AdmonitionComponent(x, y, 'important'),
             caution: (x, y) => AdmonitionComponent(x, y, 'caution'),
             warning: (x, y) => AdmonitionComponent(x, y, 'warning'),
-          },
-        },
-      ],
-      [
-        rehypeAutolinkHeadings,
-        {
-          behavior: 'append',
-          properties: {
-            className: ['anchor'],
-          },
-          content: {
-            type: 'element',
-            tagName: 'span',
-            properties: {
-              className: ['anchor-icon'],
-              'data-pagefind-ignore': true,
-            },
-            children: [
-              {
-                type: 'text',
-                value: '#',
-              },
-            ],
           },
         },
       ],

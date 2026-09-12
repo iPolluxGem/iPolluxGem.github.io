@@ -2,6 +2,12 @@
 
 @tailwind components;
 
+/* 全站默认字体：975 圆体（即 tailwind 配置里的 fontFamily.sans）。
+   未单独指定字体族的 UI 文本（文章元数据、侧边栏、TOC、底栏、CC 块等）都继承这里。 */
+html {
+    @apply font-sans;
+}
+
 @layer components {
     .card-base {
         @apply rounded-[var(--radius-large)] overflow-hidden bg-[var(--card-bg)] transition;
@@ -9,19 +15,11 @@
     h1, h2, h3, h4, h5, h6, p, a, span, li, ul, ol, blockquote, code, pre, table, th, td, strong {
         @apply transition;
     }
+    /* .card-shadow 零引用，2026-09-12 注释
     .card-shadow {
         @apply drop-shadow-[0_2px_4px_rgba(0,0,0,0.005)]
     }
-    .expand-animation {
-        @apply relative before:ease-out before:transition active:bg-none hover:before:bg-[var(--btn-plain-bg-hover)] active:before:bg-[var(--btn-plain-bg-active)] z-0
-        before:absolute before:rounded-[inherit] before:inset-0 before:scale-[0.85] hover:before:scale-100 before:-z-10
-    }
-    .link {
-        @apply transition rounded-md p-1 -m-1 expand-animation;
-    }
-    .link-lg {
-        @apply transition rounded-md p-1.5 -m-1.5 expand-animation;
-    }
+    */
     .float-panel {
         @apply top-[5.25rem] rounded-[var(--radius-large)] overflow-hidden bg-[var(--float-panel-bg)] transition shadow-xl dark:shadow-none
     }
@@ -32,37 +30,14 @@
         @apply bg-transparent text-[var(--primary)]
     }
 
-    .btn-card {
-        @apply transition flex items-center justify-center bg-[var(--card-bg)] hover:bg-[var(--btn-card-bg-hover)]
-        active:bg-[var(--btn-card-bg-active)]
-    }
-    .btn-card.disabled {
-        @apply pointer-events-none text-black/10 dark:text-white/10
-    }
-    .btn-plain {
-        @apply transition relative flex items-center justify-center bg-none
-        text-black/75 hover:text-[var(--primary)] dark:text-white/75 dark:hover:text-[var(--primary)];
-        &:not(.scale-animation) {
-            @apply hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)]
-        }
-        &.scale-animation {
-            @apply expand-animation;
-            &.current-theme-btn {
-                @apply before:scale-100 before:opacity-100 before:bg-[var(--btn-plain-bg-hover)] text-[var(--primary)]
-            }
-        }
-    }
+    /* .btn-regular 零引用（2026-09-12 注释）：代码块按钮现在用 .code-btn */
+    /*
     .btn-regular {
         @apply transition flex items-center justify-center bg-[var(--btn-regular-bg)] hover:bg-[var(--btn-regular-bg-hover)] active:bg-[var(--btn-regular-bg-active)]
         text-[var(--btn-content)] dark:text-white/75
     }
+    */
 
-    .link-underline {
-        @apply transition underline decoration-2 decoration-dashed decoration-[var(--link-underline)]
-        hover:decoration-[var(--link-hover)] active:decoration-[var(--link-active)] underline-offset-[0.25rem]
-    }
-
-    .toc-hide,
     .toc-not-ready {
         @apply opacity-0 pointer-events-none
     }
@@ -79,58 +54,123 @@
         display: none;
     }
 
+    /* ⚠️ 本项目 CSS 层顺序（重要，容易踩）：注入的 @astrojs/tailwind/base.css（含全部工具类）
+       排在前，main.css 的 @layer components 排在后 —— 所以**同优先级的工具类会输给组件类**。
+       因此组件类里不要写"使用点可能要用工具类覆盖"的属性（尺寸/颜色/圆角）；
+       这类属性放到使用点的工具类上，或者另建一个定义在后面的变体类。 */
+
+    /* ── 图标按钮（统一条目）──────────────────────────────
+       内容：居中 + 过渡 + 按下缩到 0.9（不含尺寸与颜色，见上面的层顺序说明）
+       用法（4 个标准图标按钮）：class="icon-btn h-11 w-11 rounded-lg text-75 hover:text-green"
+       成员：导航栏社交图标、导航栏菜单按钮、主题切换主按钮、搜索按钮
+       绿色图标按钮（返回顶部）：class="icon-btn h-[3.75rem] w-[3.75rem] text-green hover:text-green-deep" */
+    .icon-btn {
+        @apply flex items-center justify-center transition active:scale-90
+    }
+
+    /* ── 交互档位（按下缩放）汇总 ────────────────────────────────
+       0.90  图标按钮 .icon-btn、文字按钮 .text-btn、文字导航 .nav-link、页脚链接 .footer-link、返回顶部
+       无缩放 行/卡片：归档行、TOC 条目、首页卡片标题、文章页前后篇（只 hover 变色） */
+
+    /* ── 文字按钮（整行）───────────────────────────────────────
+       成员：侧栏分类 ButtonLink、侧栏「更多」WidgetLayout
+       交互：hover 变主题绿、按下缩到 0.9、无底色块 */
+    .text-btn {
+        @apply w-full rounded-lg transition text-75 hover:text-green active:scale-90
+    }
+
+    /* ── 文字导航项（顶部导航栏）──────────────────────────────
+       成员：Navbar.astro 的 links.map 渲染的文字链接 */
+    .nav-link {
+        @apply transition flex items-center rounded-lg h-11 font-bold px-5 text-75 hover:text-green active:scale-90
+    }
+
+    /* ── 页脚链接 ──────────────────────────────────────────────
+       成员：Footer.astro 的全部链接（RSS / Sitemap / Astro / Fuwari / GitHub Pages / 🐋 / ICP） */
+    .footer-link {
+        @apply inline-block transition font-bold text-75 hover:text-green active:scale-90
+    }
+
+    /* ── 文字颜色档位 ───────────────────────────────────────────
+       亮/暗由 variables.styl 的 --text-* 一对值切换（单条 color 声明，不带 dark: 变体），
+       这样 hover:text-* 之类的交互色能稳定覆盖它们。
+         .text-90  标题、强调文字           .text-75  正文、链接、导航、页脚、侧栏
+         .text-50  次要信息（元数据、摘要）  .text-30  极弱（标签、说明）
+         .text-25  最弱（分隔符、占位） */
     .text-90 {
-        @apply text-black/90 dark:text-white/90
+        color: var(--text-90)
     }
     .text-75 {
-        @apply text-black/75 dark:text-white/75
+        color: var(--text-75)
     }
     .text-50 {
-        @apply text-black/50 dark:text-white/50
+        color: var(--text-50)
     }
     .text-30 {
-        @apply text-black/30 dark:text-white/30
+        color: var(--text-30)
     }
+    /* .text-25 档位零引用，2026-09-12 注释（档位实际只用到 90/75/50/30）
     .text-25 {
-        @apply text-black/25 dark:text-white/25
+        color: var(--text-25)
     }
+    */
 
     .meta-icon {
         @apply w-8 h-8 transition rounded-md flex items-center justify-center bg-[var(--btn-regular-bg)]
         text-[var(--btn-content)] mr-2
     }
+    /* .with-divider 零引用，2026-09-12 注释（旧的元数据分隔符方案，现直接手写 `|`）
     .with-divider {
         @apply before:content-['/'] before:ml-1.5 before:mr-1.5 before:text-[var(--meta-divider)] before:text-sm
         before:font-medium before:first-of-type:hidden before:transition
     }
+    */
 
-    .btn-regular-dark {
+    /* ── 代码块按钮（右上角按钮组：切换明暗 / 复制）────────────
+       成员：Markdown.astro 的 JS 生成的 .code-theme-btn 与 .copy-btn
+       配色读代码块自身的明暗状态变量 --codeblock-btn-*（由 markdown.css 按状态重声明），
+       所以「忽略主题」强制明暗时按钮也跟着换，不需要 dark: 变体。 */
+    .code-btn {
         @apply flex items-center justify-center
-        bg-[oklch(0.45_0.01_var(--hue))] hover:bg-[oklch(0.50_0.01_var(--hue))] active:bg-[oklch(0.55_0.01_var(--hue))]
-        dark:bg-[oklch(0.30_0.02_var(--hue))] dark:hover:bg-[oklch(0.35_0.03_var(--hue))] dark:active:bg-[oklch(0.40_0.03_var(--hue))]
+        bg-[var(--codeblock-btn-bg)] hover:bg-[var(--codeblock-btn-bg-hover)] active:bg-[var(--codeblock-btn-bg-active)]
     }
-    .btn-regular-dark.success {
-        @apply bg-[oklch(0.75_0.14_var(--hue))] dark:bg-[oklch(0.75_0.14_var(--hue))]
+    /* 复制成功的反馈色：浅绿底 + 深色图标，两种明暗的代码块下都成立 */
+    .code-btn.success {
+        @apply bg-[oklch(0.75_0.14_var(--hue))]
     }
 
-    .copy-btn-icon {
-        @apply absolute top-1/2 left-1/2 transition -translate-x-1/2 -translate-y-1/2
+    /* 按钮里的图标：多个图标叠在同一位置交叉淡入淡出
+       （复制↔成功、月亮↔太阳共用这一条） */
+    .swap-icon {
+        @apply absolute top-1/2 left-1/2 transition -translate-x-1/2 -translate-y-1/2;
+        fill: var(--codeblock-btn-fg);
     }
-    .copy-btn .copy-icon {
-        @apply opacity-100 fill-white dark:fill-white/75
-    }
-    .copy-btn.success .copy-icon {
-        @apply opacity-0 fill-[var(--deep-text)]
-    }
+    /* 复制按钮：当前状态之外的那个图标隐藏；成功后显示勾，且勾用深色
+       （成功态底色是浅绿，亮/暗两种代码块下都需要深色图标） */
+    .copy-btn.success .copy-icon,
     .copy-btn .success-icon {
         @apply opacity-0
     }
     .copy-btn.success .success-icon {
-        @apply opacity-100
+        @apply opacity-100;
+        fill: var(--deep-text);
+    }
+    /* 明暗切换按钮的两个图标：由状态变量决定谁可见（见 markdown.css） */
+    .code-theme-btn .icon-to-dark {
+        opacity: var(--codeblock-icon-to-dark)
+    }
+    .code-theme-btn .icon-to-light {
+        opacity: var(--codeblock-icon-to-light)
     }
 }
 
-.custom-md img, #post-cover img {
+/* ── 交互强调色（统一入口：组件里不要再直接写 hover:text-[var(--…)]）────────
+   text-green        主题绿 --primary：黑/灰文字的 hover 高亮，或本来就是绿字的地方
+   text-green-deep   绿字再 hover 的强调色 --accent-hover（亮/暗各一值）
+   两者都定义在 tailwind.config.cjs 的 theme.extend.colors（值指向 variables.styl 的变量），
+   属于真正的工具类，所以天然支持 hover: / group-hover: / group-hover/xxx: 等变体。 */
+
+#post-cover img {
     @apply cursor-zoom-in
 }
 
@@ -154,27 +194,11 @@
     transform: translateY(-50%);
 }
 
-.custom-md spoiler {
-    @apply bg-[var(--codeblock-bg)] hover:bg-transparent px-1 py-0.5 overflow-hidden rounded-md transition-all duration-150;
-
-    &:not(:hover) {
-        color: var(--codeblock-bg);
-        * {
-            color: var(--codeblock-bg);
-        }
-    }
-}
-
 .collapsed {
     height: var(--collapsedHeight);
 }
 
-/* 正文（文章内容）字号：在根字号基础上 +1px，不影响 UI（UI 走 rem，随根字号）。
-   用 .custom-md.prose 提高优先级，压过 Tailwind Typography 的 .prose/.prose-base。 */
-.custom-md.prose {
-    font-size: calc(1rem + 1px);
-}
-
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Noto Serif SC', 'Noto Serif', 'Songti SC', 'SimSun', 'Georgia', 'Times New Roman', serif;
+    /* 内文标题：文津宋体 */
+    @apply font-serif;
 }

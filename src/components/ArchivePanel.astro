@@ -3,14 +3,14 @@ import { UNCATEGORIZED } from '@constants/constants'
 import I18nKey from '../i18n/i18nKey'
 import { i18n } from '../i18n/translation'
 import { getSortedPosts } from '../utils/content-utils'
-import { getPostUrlBySlug } from '../utils/url-utils'
+import { getPostUrlBySlug, url } from '../utils/url-utils'
 
 interface Props {
   keyword?: string
   tags?: string[]
   categories?: string[]
 }
-const { keyword, tags, categories } = Astro.props
+const { tags, categories } = Astro.props
 
 let posts = await getSortedPosts()
 
@@ -59,10 +59,6 @@ function formatDate(date: Date) {
   const day = date.getDate().toString().padStart(2, '0')
   return `${month}-${day}`
 }
-
-function formatTag(tag: string[]) {
-  return tag.map(t => `#${t}`).join(' ')
-}
 ---
 
 <div class="card-base px-8 py-6">
@@ -77,40 +73,55 @@ function formatTag(tag: string[]) {
                     <div class="w-[70%] md:w-[80%] transition text-left text-50">{group.posts.length} {i18n(I18nKey.postsCount)}</div>
                 </div>
                 {group.posts.map(post => (
-                    <a href={getPostUrlBySlug(post.slug)}
-                       aria-label={post.data.title}
-                       class="group btn-plain !block h-10 w-full rounded-lg hover:text-[initial]"
+                    <div class="group flex items-stretch w-full min-h-10 rounded-lg transition"
                     >
-                        <div class="flex flex-row justify-start items-center h-full">
+                        <!-- 日期 + 时间轴：整体占 30%/20%（= 与上方年份行同样的 15%+15% / 10%+10%），
+                             内部用 w-1/2 均分，保证每行虚线与圆点横向位置完全一致 -->
+                        <a href={getPostUrlBySlug(post.slug)}
+                           aria-label={post.data.title}
+                           tabindex="-1"
+                           aria-hidden="true"
+                           class="flex w-[30%] md:w-[20%] shrink-0 items-stretch"
+                        >
                             <!-- date -->
-                            <div class="w-[15%] md:w-[10%] transition text-sm text-right text-50">
+                            <div class="w-1/2 self-center transition text-sm text-right text-50">
                                 {formatDate(post.data.published)}
                             </div>
                             <!-- dot and line -->
-                            <div class="w-[15%] md:w-[10%] relative dash-line h-full flex items-center">
+                            <div class="w-1/2 relative dash-line flex items-center">
                                 <div class="transition-all mx-auto w-1 h-1 rounded group-hover:h-5
                                 bg-[oklch(0.5_0.05_var(--hue))] group-hover:bg-[var(--primary)]
                                 outline outline-4 z-50
                                 outline-[var(--card-bg)]
-                                group-hover:outline-[var(--btn-plain-bg-hover)]
-                                group-active:outline-[var(--btn-plain-bg-active)]
                                 "
                                 ></div>
                             </div>
-                            <!-- post title -->
-                            <div class="w-[70%] md:max-w-[65%] md:w-[65%] text-left font-serif font-medium
-                                group-hover:translate-x-1 transition-all group-hover:font-bold
-                                text-75 pr-8 whitespace-nowrap overflow-ellipsis overflow-hidden"
+                        </a>
+                        <!-- post title -->
+                        <a href={getPostUrlBySlug(post.slug)}
+                           aria-label={post.data.title}
+                           class="flex flex-1 min-w-0 items-center"
+                        >
+                            <div class="w-full self-center text-left font-serif font-medium text-[1.1rem]
+                                transition-all group-hover:text-green
+                                text-75 pr-2 whitespace-nowrap overflow-ellipsis overflow-hidden"
                             >
                                     {post.data.title}
                             </div>
-                            <!-- tag list -->
-                            <div class="hidden md:block md:w-[15%] text-left text-sm transition
-                            whitespace-nowrap overflow-ellipsis overflow-hidden
-                            text-30"
-                            >{formatTag(post.data.tags)}</div>
+                        </a>
+                        <!-- tag list（可点击；按内容宽度靠右排布，仅在极长时换行，绝不截断） -->
+                        <div class="hidden md:flex shrink-0 flex-wrap justify-end items-center gap-y-1
+                            pl-4 max-w-[40%] text-left text-sm transition text-30"
+                        >
+                            {post.data.tags.map((tag, i) => (
+                                <span class="flex items-center">
+                                    {i > 0 && <span class="mr-1.5 select-none">,</span>}
+                                    <a href={url(`/archive/tag/${tag}/`)} aria-label=`View all posts with the ${tag} tag`
+                                       class="transition hover:text-green whitespace-nowrap">{tag}</a>
+                                </span>
+                            ))}
                         </div>
-                    </a>
+                    </div>
                 ))}
             </div>
         ))

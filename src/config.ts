@@ -9,20 +9,10 @@ import { LinkPreset } from './types/config'
 export const siteConfig: SiteConfig = {
   title: '半分星',
   subtitle: '其出弥远，其知弥少',
-  lang: 'zh_CN',         // 'en', 'zh_CN', 'zh_TW', 'ja', 'ko', 'es', 'th'
+  lang: 'zh_CN',         // 'en', 'zh_CN', 'zh_TW'
   themeColor: {
     hue: 157,         // Background & neutral tint hue, matches the accent color #009e61 (green)
     fixed: true,      // Theme color picker removed; accent color fixed to #009e61
-  },
-  banner: {
-    enable: false,
-    src: 'assets/images/demo-banner.png',   // Relative to the /src directory. Relative to the /public directory if it starts with '/'
-    position: 'center',      // Equivalent to object-position, only supports 'top', 'center', 'bottom'. 'center' by default
-    credit: {
-      enable: false,         // Display the credit text of the banner image
-      text: '',              // Credit text to be displayed
-      url: ''                // (Optional) URL link to the original artwork or artist's page
-    }
   },
   toc: {
     enable: true,           // Display the table of contents on the right side of the post
