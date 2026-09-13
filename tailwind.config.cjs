@@ -28,40 +28,21 @@ module.exports = {
         green: 'var(--primary)',
         'green-deep': 'var(--accent-hover)',
       },
+      /* 字体栈的兜底只留通用族：
+         webfont（子集）都是 `font-display: swap`，加载完成前/加载失败时就用这里的通用族显示，
+         这样不会先闪一个具体的系统字体再换成 webfont。
+         约定：应加载文津宋体的位置 → 浏览器 serif；应加载霞鹜文楷 / 975 圆体的位置 → 浏览器 sans-serif。 */
       fontFamily: {
         sans: [
           '"LXGW 975 Yuan SC"', // 名字里含数字，必须带引号，否则整条 font-family 声明会被浏览器丢弃
-          "Noto Sans SC",
-          "Noto Sans",
-          "PingFang SC",
-          "Microsoft YaHei",
-          "sans-serif",
+          'sans-serif',
         ],
-        serif: [
-          "WenJin Mincho",
-          "Noto Serif SC",
-          "Noto Serif",
-          "Songti SC",
-          "SimSun",
-          "Georgia",
-          "Times New Roman",
-          "serif",
-        ],
+        serif: ['WenJin Mincho', 'serif'],
         side: [
           '"LXGW 975 Yuan SC"', // 同上
-          "Noto Sans SC",
-          "Noto Sans",
-          "PingFang SC",
-          "Microsoft YaHei",
-          "sans-serif",
+          'sans-serif',
         ],
-        kai: [
-          "LXGW WenKai",
-          "Kaiti SC",
-          "KaiTi",
-          "STKaiti",
-          "serif",
-        ],
+        kai: ['LXGW WenKai', 'sans-serif'],
         system: [
           "system-ui",
           "-apple-system",
