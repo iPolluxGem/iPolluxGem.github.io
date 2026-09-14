@@ -26,6 +26,10 @@ pnpm-debug.log*
 # MS-specific files
 desktop.ini
 
+# MISC
+.netlify/
+.vscode/
+
 # personal notes (not for git)
 blog-cheatsheet.md
 
